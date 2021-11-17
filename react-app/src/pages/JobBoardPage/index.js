@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { loadJobTasks } from '../../store/tasks';
 import { loadSingleJob } from '../../store/jobs';
+import JobBoard from '../../components/JobBoard';
 
 export default function JobBoardPage() {
     const history = useHistory();
@@ -36,15 +37,7 @@ export default function JobBoardPage() {
                 <div className="job-board-page-content">
                     <p>{currentJob.title}</p>
                     <p>{currentJob.description}</p>
-                    {jobTasks.map((task) => {
-                        return (
-                            <div key={task.id}>
-                                <p>{task.title}</p>
-                                <p>{task.status}</p>
-                                <p>{task.description}</p>
-                            </div>
-                        )
-                    })}
+                    <JobBoard tasks={jobTasks} />
                 </div>
             )}
         </div>
