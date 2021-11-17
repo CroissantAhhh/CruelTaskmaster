@@ -68,7 +68,7 @@ export const removeenvironment = (environmentId) => async dispatch => {
     });
 
     if (response.ok) {
-        const environment = await response.json();
+        const environmentId = await response.json();
         dispatch(remove(environmentId))
     }
 }

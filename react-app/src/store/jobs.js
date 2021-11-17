@@ -28,6 +28,15 @@ export const loadEnvironmentJobs = (environmentId) => async dispatch => {
     };
 };
 
+export const loadSingleJob = (jobHash) => async dispatch => {
+    const response = await fetch(`/api/jobs/${jobHash}`);
+
+    if (response.ok) {
+        const job = await response.json();
+        dispatch(add(job));
+    }
+}
+
 export const addJob = (formData) => async dispatch => {
     const response  = await fetch("/api/jobs", {
         method: "POST",
@@ -68,7 +77,7 @@ export const removeJob = (jobId) => async dispatch => {
     });
 
     if (response.ok) {
-        const job = await response.json();
+        const jobId = await response.json();
         dispatch(remove(jobId))
     }
 }

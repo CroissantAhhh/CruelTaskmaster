@@ -53,7 +53,8 @@ class Environment(db.Model):
             'userId': self.user_id,
             'hashedId': self.hashed_id,
             'title': self.title,
-            'description': self.description
+            'description': self.description,
+            'jobLinks': [{"link": job.to_dict()["hashedId"], "title": job.to_dict()["title"]} for job in self.jobs]
         }
 
     user = db.relationship("User", back_populates="environments")
@@ -77,7 +78,7 @@ class Job(db.Model):
             'environmentId': self.environment_id,
             'hashedId': self.hashed_id,
             'title': self.title,
-            'description': self.description
+            'description': self.description,
         }
 
     environment = db.relationship("Environment", back_populates="jobs")

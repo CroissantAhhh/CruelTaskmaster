@@ -3,12 +3,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
-const NavBar = () => {
+export default function NavBar() {
   return (
     <nav>
       <ul>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
+          <NavLink to='/home' exact={true} activeClassName='active'>
             Home
           </NavLink>
         </li>
@@ -23,16 +23,9 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
           <LogoutButton />
         </li>
       </ul>
     </nav>
   );
 }
-
-export default NavBar;

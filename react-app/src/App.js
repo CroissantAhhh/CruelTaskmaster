@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import SplashPage from './pages/SplashPage';
 import { authenticate } from './store/session';
+import { loadUserEnvironments } from './store/environments';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -22,6 +23,13 @@ function App() {
     })();
   }, [dispatch]);
 
+  const sessionUser = useSelector(state => state.session.user);
+
+  useEffect(() => {
+    if (sessionUser) {
+      dispatch(loadUserEnvironments(sessionUser.id))
+    }
+  }, [dispatch, sessionUser])
   if (!loaded) {
     return null;
   }
@@ -39,10 +47,10 @@ function App() {
         <Route path='/signup' exact={true}>
           <SignupPage />
         </Route>
-        <ProtectedRoute path='/environments/:environmentId' exact={true} >
+        <ProtectedRoute path='/environments/:environmentHash' exact={true} >
           <EnvironmentPage/>
         </ProtectedRoute>
-        <ProtectedRoute path='/jobs/:jobId' exact={true} >
+        <ProtectedRoute path='/jobs/:jobHash' exact={true} >
           <JobBoardPage />
         </ProtectedRoute>
         <ProtectedRoute path='/home' exact={true} >
