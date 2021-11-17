@@ -40,12 +40,11 @@ class Environment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    hashed_id = db.Column(db.Integer)
+    hashed_id = db.Column(db.String)
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
 
-    @title.setter
-    def title(self):
+    def set_hashed_id(self):
         self.hashed_id = generate_hash_id()
 
     def to_dict(self):
@@ -65,9 +64,12 @@ class Job(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     environment_id = db.Column(db.Integer, db.ForeignKey("environments.id"), nullable=False)
-    hashed_id = db.Column(db.Integer)
+    hashed_id = db.Column(db.String)
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
+
+    def set_hashed_id(self):
+        self.hashed_id = generate_hash_id()
 
     def to_dict(self):
         return {

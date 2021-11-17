@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
+import { useDispatch, useSelector } from 'react-redux';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+import EnvironmentPage from './pages/EnvironmentPage';
+import HomePage from './pages/HomePage';
+import JobBoardPage from './pages/JobBoardPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import SplashPage from './pages/SplashPage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -28,20 +30,23 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true} >
+          <SplashPage />
+        </Route>
         <Route path='/login' exact={true}>
-          <LoginForm />
+          <LoginPage />
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+        <Route path='/signup' exact={true}>
+          <SignupPage />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+        <ProtectedRoute path='/environments/:environmentId' exact={true} >
+          <EnvironmentPage/>
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
+        <ProtectedRoute path='/jobs/:jobId' exact={true} >
+          <JobBoardPage />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+        <ProtectedRoute path='/home' exact={true} >
+          <HomePage/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

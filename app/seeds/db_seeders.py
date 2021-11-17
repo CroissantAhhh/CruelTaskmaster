@@ -3,21 +3,9 @@ from werkzeug.security import generate_password_hash
 from app.models import db, User, Environment, Job, Task
 import datetime as dt
 from random import randint, choice, sample
-from faker import Faker
 import json
 
-fake = Faker()
 
-# loads json data
-with open('app/seeds/message_data.json') as json_file:
-    data = json.load(json_file)
-messages = data['messages']
-replacements = data['replacements']
-# default counts
-total_users = 30
-total_servers = 20
-channels_per_server = 7
-total_channels = total_servers*channels_per_server
 
 
 def seed_users():
@@ -52,6 +40,9 @@ def seed_environments():
         title='Gaming',
         description='Gaming related objectives'
     )
+    job_env.set_hashed_id()
+    fit_env.set_hashed_id()
+    gaming_env.set_hashed_id()
     db.session.add(job_env)
     db.session.add(fit_env)
     db.session.add(gaming_env)
@@ -107,6 +98,15 @@ def seed_jobs():
         title='Minecraft',
         description='Objectives and goals related to Minecraft'
     )
+    env1_j1.set_hashed_id()
+    env1_j2.set_hashed_id()
+    env1_j3.set_hashed_id()
+    env1_j4.set_hashed_id()
+    env2_j1.set_hashed_id()
+    env2_j2.set_hashed_id()
+    env3_j1.set_hashed_id()
+    env3_j2.set_hashed_id()
+    env3_j3.set_hashed_id()
     db.session.add(env1_j1)
     db.session.add(env1_j2)
     db.session.add(env1_j3)
@@ -143,36 +143,158 @@ def seed_tasks():
     job1_task4 = Task(
         job_id=1,
         title='Implement track queue page',
+        status='To-do',
         details='Page that displays currently playing song, along with the songs that will play afterwards, in the correct order'
     )
     job2_task1 = Task(
         job_id=2,
+        title='Update Resume',
+        status="To-do",
+        details='Update resume to reflect and include skills learned through App Academy',
     )
+    job2_task2 = Task(
+        job_id=2,
+        title='Update LinkedIn',
+        status="To-do",
+        details="Update LinkedIn profile to reflect and include skills learned through App Academy"
+    )
+    job2_task3 = Task(
+        job_id=2,
+        title='READMEs for solo projects on GitHub',
+        status='To-do',
+        details="Fleshing out READMEs on project repository pages to present my websites more in depth"
+    )
+    job2_task4 = Task(
+        job_id=2,
+        title='Decorate GitHub profile',
+        status="To-do",
+        details="Making GitHub profile more presentable, perhaps need to change my username..."
+    )
+    job3_task1 = Task(
+        job_id=3,
+        title='Reach out to Anish for positions at Salesforce',
+        status='In Progress',
+        details="",
+    )
+    job3_task2 = Task(
+        job_id=3,
+        title='Reach out to 3 employees from Spotify',
+        status='To-do',
+        details=""
+    )
+    job3_task3 = Task(
+        job_id=3,
+        title='Reach out to 3 employees from Soundcloud',
+        status='To-do',
+        details="",
+    )
+    job3_task4 = Task(
+        job_id=3,
+        title="Reach out to 3 employees from Discord",
+        status="To-do",
+        details=""
+    )
+    job3_task5 = Task(
+        job_id=3,
+        title="Message Rodman about openings at Microsoft",
+        status="To-do",
+        details="",
+    )
+    job4_task1 = Task(
+        job_id=4,
+        title="models design and migration",
+        status="Complete",
+        details=""
+    )
+    job4_task2 = Task(
+        job_id=4,
+        title="Seed data",
+        status="In Progress",
+        details=""
+    )
+    job4_task3 = Task(
+        job_id=4,
+        title="Test cascading deletes",
+        status="To-do",
+        details=""
+    )
+    job4_task4 = Task(
+        job_id=4,
+        title="Plan out frontend components design",
+        status="To-do",
+        details="Figure out the most efficient modular way to design the pages and React components of the site"
+    )
+    job4_task5 = Task(
+        job_id=4,
+        title="Design logo and pick font for site name",
+        status="To-do",
+        details="Logo will most likely some kind of orc icon, since the site is named Cruel Taskmaster"
+    )
+    job4_task6 = Task(
+        job_id=4,
+        title="Set up React redux store",
+        status="To-do",
+        details="slices of state will mostly likely be session, environments, jobs, and tasks",
+    )
+    job4_task7 = Task(
+        job_id=4,
+        title="Complete skeleton code for all pages and components",
+        status="To-do",
+        details="finish barebones versions of all the pages and components, print relevant information on page unstyled"
+    )
+    job4_task8 = Task(
+        job_id=4,
+        title="Set up routing",
+        status="To-do",
+        details=""
+    )
+    job4_task9 = Task(
+        job_id=4,
+        title="Stop working on seed data for now and actually start on the site",
+        status="Complete",
+        details=""
+    )
+    db.session.add(job1_task1)
+    db.session.add(job1_task2)
+    db.session.add(job1_task3)
+    db.session.add(job1_task4)
+    db.session.add(job2_task1)
+    db.session.add(job2_task2)
+    db.session.add(job2_task3)
+    db.session.add(job2_task4)
+    db.session.add(job3_task1)
+    db.session.add(job3_task2)
+    db.session.add(job3_task3)
+    db.session.add(job3_task4)
+    db.session.add(job3_task5)
+    db.session.add(job4_task1)
+    db.session.add(job4_task2)
+    db.session.add(job4_task3)
+    db.session.add(job4_task4)
+    db.session.add(job4_task5)
+    db.session.add(job4_task6)
+    db.session.add(job4_task7)
+    db.session.add(job4_task8)
+    db.session.add(job4_task9)
+    db.session.commit()
+
 
 def seed_all():
     '''
     Seeds all models.
     '''
-    seed_user()
-    seed_server()
-    seed_user_server()
-    seed_channel()
-    seed_message()
-    seed_friends()
+    seed_users()
+    seed_environments()
+    seed_jobs()
+    seed_tasks()
 
 
 def undo_all():
     '''
     Undos all seeded models.
     '''
-    db.session.execute(f'TRUNCATE messages RESTART IDENTITY CASCADE;')
-    db.session.execute(f'TRUNCATE friends RESTART IDENTITY CASCADE;')
-    db.session.execute(f'TRUNCATE user_servers RESTART IDENTITY CASCADE;')
-    db.session.execute(f'TRUNCATE channels RESTART IDENTITY CASCADE;')
-    db.session.execute(f'TRUNCATE servers RESTART IDENTITY CASCADE;')
+    db.session.execute(f'TRUNCATE tasks RESTART IDENTITY CASCADE;')
+    db.session.execute(f'TRUNCATE jobs RESTART IDENTITY CASCADE;')
+    db.session.execute(f'TRUNCATE environments RESTART IDENTITY CASCADE;')
     db.session.execute(f'TRUNCATE users RESTART IDENTITY CASCADE;')
     db.session.commit()
-
-
-if __name__ == '__main__':
-    seed_message()
