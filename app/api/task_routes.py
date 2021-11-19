@@ -4,10 +4,10 @@ from app.models import db, Task
 
 task_routes = Blueprint('tasks', __name__)
 
-@task_routes.route('/byJob/<int:job_id>')
+@task_routes.route('/bySection/<int:section_id>')
 @login_required
-def job_tasks(job_id):
-    tasks = Task.query.filter(Task.job_id == job_id).all()
+def section_tasks(section_id):
+    tasks = Task.query.filter(Task.section_id == section_id).all()
     return {'tasks': [task.to_dict() for task in tasks]}
 
 
@@ -18,7 +18,7 @@ def post_task():
     task = Task(
         job_id = data["jobId"],
         title = data["title"],
-        status = "To-do",
+        status = data["status"],
         details = data["details"],
     )
     db.session.add(task)

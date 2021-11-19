@@ -30,10 +30,6 @@ export default function TaskBlock({ task, taskIndex }) {
         setShowTaskDetail(false);
     }
 
-    function onDragEnd(result) {
-
-    }
-
     const taskDetail = (
         <div className="task-detail-pop-up">
             <div className="task-detail-title">
@@ -65,9 +61,9 @@ export default function TaskBlock({ task, taskIndex }) {
     )
 
     return (
-        <Draggable draggableId={String(task.id)} index={taskIndex}>
+        <Draggable draggableId={task.id} index={taskIndex}>
             {provided => (
-                <div id={"task-block-" + task.id} className="task-block" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                <div id={task.id} className="task-block" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                     <div className="task-block-content">
                         <div className="task-block-body" onClick={() => setShowTaskDetail(true)}>
                             <p className="task-block-title">{task.title}</p>

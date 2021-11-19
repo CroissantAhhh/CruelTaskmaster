@@ -1,3 +1,4 @@
+from re import S
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -68,6 +69,7 @@ class Job(db.Model):
     hashed_id = db.Column(db.String)
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
+    section_order = db.Column(db.String(1000), nullable=False)
 
     def set_hashed_id(self):
         self.hashed_id = generate_hash_id()
@@ -79,16 +81,36 @@ class Job(db.Model):
             'hashedId': self.hashed_id,
             'title': self.title,
             'description': self.description,
+            'sectionOrder': self.section_order.split('<>') if self.section_order else [],
         }
 
     environment = db.relationship("Environment", back_populates="jobs")
-    tasks = db.relationship("Task", back_populates="job", cascade="all,delete-orphan")
+    sections = db.relationship("Section", back_populates="job", cascade="all,delete-orphan")
+
+class Section(db.Model):
+    __tablename__ = 'sections'
+
+    id = db.Column(db.Integer, primary_key=True)
+    job_id = db.Column(db.Integer, db.ForeignKey("jobs.id"), nullable=False)
+    title = db.Column(db.String, nullable=False)
+    task_order = db.Column(db.String(1000), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'jobId': self.job_id,
+            'title': self.title,
+            'taskOrder': self.task_order.split('<>') if self.task_order else [],
+        }
+
+    job = db.relationship("Job", back_populates="sections")
+    tasks = db.relationship("Task", back_populates="section", cascade="all,delete-orphan")
 
 class Task(db.Model):
     __tablename__ = 'tasks'
 
     id = db.Column(db.Integer, primary_key=True)
-    job_id = db.Column(db.Integer, db.ForeignKey("jobs.id"), nullable=False)
+    section_id = db.Column(db.Integer, db.ForeignKey("sections.id"), nullable=False)
     title = db.Column(db.String, nullable=False)
     status = db.Column(db.String, nullable=False)
     details = db.Column(db.String)
@@ -96,10 +118,10 @@ class Task(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'jobId': self.job_id,
+            'sectionId': self.section_id,
             'title': self.title,
             'status': self.status,
             'details': self.details,
         }
 
-    job = db.relationship("Job", back_populates="tasks")
+    section = db.relationship("Section", back_populates="tasks")

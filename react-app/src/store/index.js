@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import environments from './environments';
 import jobs from './jobs';
+import sections from './sections'
 import tasks from './tasks';
 
 const rootReducer = combineReducers({
   environments,
   jobs,
+  sections,
   tasks,
   session,
 });

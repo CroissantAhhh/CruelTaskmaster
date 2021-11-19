@@ -19,8 +19,8 @@ const remove = (taskId) => ({
     taskId
 });
 
-export const loadJobTasks = (jobId) => async dispatch => {
-    const response = await fetch(`/api/tasks/byJob/${jobId}`);
+export const loadSectionTasks = (sectionId) => async dispatch => {
+    const response = await fetch(`/api/tasks/bySection/${sectionId}`);
 
     if (response.ok) {
         const tasks = await response.json();

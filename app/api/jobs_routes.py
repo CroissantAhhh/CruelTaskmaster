@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Job
+from app.models import db, Job, Section
 import random
 import string
 
@@ -33,6 +33,24 @@ def post_job():
         description = data["description"],
     )
     db.session.add(job)
+    TD = Section(
+        job_id = job.id,
+        title = 'To-do',
+        taskOrder = '',
+    )
+    IP = Section(
+        job_id = job.id,
+        title = 'In Progress',
+        taskOrder = '',
+    )
+    C = Section(
+        job_id = job.id,
+        title = 'Complete',
+        taskOrder = '',
+    )
+    db.session.add(TD)
+    db.session.add(IP)
+    db.session.add(C)
     db.session.commit()
     return job.to_dict()
 
