@@ -59,7 +59,7 @@ export const updateEnvironment = (formData) => async dispatch => {
     }
 }
 
-export const removeenvironment = (environmentId) => async dispatch => {
+export const removeEnvironment = (environmentId) => async dispatch => {
     const response = await fetch(`/api/environments/${environmentId}`, {
         method: "DELETE",
         headers: {

@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { loadJobTasks } from '../../store/tasks';
 import { loadSingleJob } from '../../store/jobs';
 import JobBoard from '../../components/JobBoard';
@@ -8,7 +9,7 @@ import JobBoard from '../../components/JobBoard';
 export default function JobBoardPage() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [tasksLoaded, setTasksLoaded] = useState(false);
     const { jobHash } = useParams();
     const sessionUser = useSelector(state => state.session.user)
     const userJobs = useSelector(state => Object.values(state.jobs));
@@ -16,24 +17,23 @@ export default function JobBoardPage() {
     const jobTasks = useSelector(state => Object.values(state.tasks));
 
     useEffect(() => {
-        dispatch(loadSingleJob(jobHash))
+        (async () => {
+            await dispatch(loadSingleJob(jobHash))
+        })();
     }, [jobHash, dispatch])
 
     useEffect(() => {
-        if (currentJob) {
-            dispatch(loadJobTasks(currentJob?.id)).then(() => setIsLoaded(true))
-        }
+        (async () => {
+            if (currentJob) {
+                await dispatch(loadJobTasks(currentJob?.id))
+                setTasksLoaded(true);
+            }
+        })();
     }, [currentJob, dispatch])
-
-    useEffect(() => {
-        if (!sessionUser) {
-            history.push('/');
-        }
-    }, [history, sessionUser])
 
     return (
         <div className="job-board-page-container">
-            {isLoaded && (
+            {tasksLoaded && (
                 <div className="job-board-page-content">
                     <p>{currentJob.title}</p>
                     <p>{currentJob.description}</p>
@@ -41,6 +41,5 @@ export default function JobBoardPage() {
                 </div>
             )}
         </div>
-
     )
 }

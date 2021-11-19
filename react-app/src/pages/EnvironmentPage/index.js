@@ -10,19 +10,13 @@ export default function EnvironmentPage() {
     const { environmentHash } = useParams();
     const sessionUser = useSelector(state => state.session.user)
     const userEnvironments = useSelector(state => Object.values(state.environments));
-    const currentEnvironment = userEnvironments?.find(env => env.hashedId = environmentHash);
+    const currentEnvironment = userEnvironments?.find(env => env.hashedId === environmentHash);
 
     useEffect(() => {
         if (currentEnvironment) {
             dispatch(loadEnvironmentJobs(currentEnvironment?.id)).then(() => setIsLoaded(true));
         }
     }, [currentEnvironment, dispatch])
-
-    useEffect(() => {
-        if (!sessionUser) {
-            history.push('/');
-        }
-    }, [history, sessionUser])
 
     return (
         <div className="environment-page-container">

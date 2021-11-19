@@ -1,0 +1,34 @@
+.task-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 50px;
+    width: 100%;
+}
+
+.task-block-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 90%;
+    border: 1px solid black;
+    background-color: teal;
+}
+
+.task-detail-pop-up {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid black;
+    background-color: red;
+}
+
+.task-block-body {
+
+}
+
+.task-block-title {
+    text-align: center;
+    font-size: 1.3vh;
+}

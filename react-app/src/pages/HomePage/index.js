@@ -9,12 +9,6 @@ export default function HomePage() {
     const userEnvironments = useSelector(state => Object.values(state.environments))
 
     useEffect(() => {
-        if (!sessionUser) {
-            history.push('/')
-        }
-    }, [history, sessionUser])
-
-    useEffect(() => {
         if (userEnvironments) {
             setIsLoaded(true);
         }
@@ -26,7 +20,7 @@ export default function HomePage() {
                 <div className="home-page-content">
                     <p>Home Page</p>
                     {userEnvironments.map((env) => {
-                        return <Link to={`/environments/${env.hashedId}`} key={`${env.hashedId} + ${env.id}`}>{env.title}</Link>
+                        return <Link to={`/environments/${env.hashedId}`} key={`${env.hashedId} + ${env.id}`} exact={"true"}>{env.title}</Link>
                     })}
                 </div>
             )}

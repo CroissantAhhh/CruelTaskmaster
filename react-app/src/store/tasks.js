@@ -29,7 +29,7 @@ export const loadJobTasks = (jobId) => async dispatch => {
 };
 
 export const addTask = (formData) => async dispatch => {
-    const response  = await fetch("/api/tasks", {
+    const response  = await fetch("/api/tasks/", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
