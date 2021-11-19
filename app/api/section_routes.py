@@ -1,13 +1,14 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Section
+from app.models import db, Job, Section
 
 section_routes = Blueprint('sections', __name__)
 
-@section_routes.route('/byJob/<int:job_id>')
+@section_routes.route('/byJob/<job_hash>')
 @login_required
-def job_sections(job_id):
-    sections = Section.query.filter(Section.job_id == job_id).all()
+def job_sections(job_hash):
+    job = Job.query.filter(Job.hashed_id == job_hash).one()
+    sections = Section.query.filter(Section.job_id == job.id).all()
     return {'sections': [section.to_dict() for section in sections]}
 
 

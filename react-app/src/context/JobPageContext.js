@@ -5,58 +5,27 @@ export const JobPageContext = createContext();
 export const useJobPage = () => useContext(JobPageContext)
 
 export default function JobPageProvider({ children }) {
-    const jobSections = {
-        'to-do-section': {
-            id: 'to-do-section',
-            title: 'To-do',
-            taskIds: [],
-        },
-        'in-progress-section': {
-            id: 'in-progress-section',
-            title: 'In Progress',
-            taskIds: [],
-        },
-        'complete-section': {
-            id: 'complete-section',
-            title: 'Complete',
-            taskIds: [],
-        }
-    }
-    const [jobPageInfo, setJobPageInfo] = useState({ sections: jobSections, tasks: {}})
+
+    const [jobPageInfo, setJobPageInfo] = useState({ job: {}, sections: {}, tasks: {}, sectionOrder: [] })
 
     const populateJobBoard = useCallback(
-        (tasksInput) => {
+        (jobInput, sectionsInput, tasksInput) => {
             const taskObject = {};
-            const sectionsObject = {
-                'to-do-section': {
-                    id: 'to-do-section',
-                    title: 'To-do',
-                    taskIds: [],
-                },
-                'in-progress-section': {
-                    id: 'in-progress-section',
-                    title: 'In Progress',
-                    taskIds: [],
-                },
-                'complete-section': {
-                    id: 'complete-section',
-                    title: 'Complete',
-                    taskIds: [],
-                }
-            };
+            const sectionsObject = {};
+
+            for (let section of sectionsInput) {
+                const newSectionKey = 'section-block-' + section.id;
+                const newSection = { id: newSectionKey, title: section.title, taskIds: section.taskOrder.map(taskId => 'task-block-' + taskId)}
+                sectionsObject[newSectionKey] = newSection;
+            }
+
             for (let task of tasksInput) {
-                if (task.status === "To-do") {
-                    sectionsObject['to-do-section'].taskIds.push("task-block-" + task.id);
-                } else if (task.status === "In Progress") {
-                    sectionsObject['in-progress-section'].taskIds.push("task-block-" + task.id);
-                } else if (task.status === "Complete") {
-                    sectionsObject['complete-section'].taskIds.push("task-block-" + task.id)
-                }
                 const newTaskKey = 'task-block-' + task.id;
                 const newTask = { id: newTaskKey, title: task.title, status: task.status, details: task.details}
                 taskObject[newTaskKey] = newTask;
             };
-            setJobPageInfo({ sections: sectionsObject, tasks: taskObject});
+            const sectionOrderArray = jobInput.sectionOrder.map(sectionId => 'section-block-' + sectionId);
+            setJobPageInfo({ job: jobInput, sections: sectionsObject, tasks: taskObject, sectionOrder: sectionOrderArray });
         },
         [setJobPageInfo]
     )

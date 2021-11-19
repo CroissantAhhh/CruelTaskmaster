@@ -19,8 +19,8 @@ const remove = (sectionId) => ({
     sectionId
 });
 
-export const loadJobSections = (jobId) => async dispatch => {
-    const response = await fetch(`/api/sections/byJob/${jobId}`);
+export const loadJobSections = (jobHash) => async dispatch => {
+    const response = await fetch(`/api/sections/byJob/${jobHash}`);
 
     if (response.ok) {
         const sections = await response.json();

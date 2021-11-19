@@ -5,7 +5,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { updateTask } from '../../../store/tasks';
 import "./TaskBlock.css";
 
-export default function TaskBlock({ task, taskIndex }) {
+export default function TaskBlock({ task, index }) {
     const dispatch = useDispatch();
     const [showTaskDetail, setShowTaskDetail] = useState(false);
     const [editingTitle, setEditingTitle] = useState(false);
@@ -61,7 +61,7 @@ export default function TaskBlock({ task, taskIndex }) {
     )
 
     return (
-        <Draggable draggableId={task.id} index={taskIndex}>
+        <Draggable draggableId={task.id} index={index}>
             {provided => (
                 <div id={task.id} className="task-block" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                     <div className="task-block-content">

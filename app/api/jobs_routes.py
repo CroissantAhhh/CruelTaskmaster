@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Job, Section
+from app.models import db, Job, Section, Task
 import random
 import string
 
@@ -20,6 +20,26 @@ def environment_jobs(environment_id):
 def get_one_job(job_hash):
     job = Job.query.filter(Job.hashed_id == job_hash).one()
     return job.to_dict()
+
+@job_routes.route('/full/<job_hash>')
+@login_required
+def get_job_full(job_hash):
+    job = Job.query.filter(Job.hashed_id == job_hash).one()
+    job_section_order = job.section_order.split('<>')
+    job_sections = []
+    job_tasks = []
+    for jso in job_section_order:
+        job_section = Section.query.get(jso).to_dict()
+        job_sections.append(job_section)
+        for sto in job_section["taskOrder"]:
+            section_task = Task.query.get(sto).to_dict()
+            job_tasks.append(section_task)
+
+    return {
+        'job': job.to_dict(),
+        'sections': job_sections,
+        'tasks': job_tasks,
+    }
 
 
 @job_routes.route('/', methods=['POST'])
@@ -63,6 +83,9 @@ def update_job(job_id):
         job.title = data["title"]
     if 'description' in data.keys():
         job.description = data["description"]
+    if 'sectionOrder' in data.keys():
+        print("hellllllooooooo")
+        job.section_order = data["sectionOrder"]
     db.session.commit()
     return job.to_dict()
 

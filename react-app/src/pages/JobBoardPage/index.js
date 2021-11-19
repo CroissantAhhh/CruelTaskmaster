@@ -1,18 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { loadJobSections } from '../../store/sections';
-import { loadSectionTasks } from '../../store/tasks';
 import { loadSingleJob } from '../../store/jobs';
 import JobPageProvider from '../../context/JobPageContext';
 import JobBoard from '../../components/JobBoard';
 
 export default function JobBoardPage() {
-    const history = useHistory();
     const dispatch = useDispatch();
     const [sectionsLoaded, setSectionsLoaded] = useState(false);
     const { jobHash } = useParams();
-    const sessionUser = useSelector(state => state.session.user)
     const userJobs = useSelector(state => Object.values(state.jobs));
     const currentJob = userJobs?.find((job) => job.hashedId === jobHash);
     const jobSections = useSelector(state => Object.values(state.sections));
@@ -20,7 +17,7 @@ export default function JobBoardPage() {
     useEffect(() => {
         (async () => {
             await dispatch(loadSingleJob(jobHash))
-            await dispatch(loadJobSections(currentJob?.id))
+            await dispatch(loadJobSections(jobHash))
             setSectionsLoaded(true)
         })();
     }, [jobHash, dispatch])
