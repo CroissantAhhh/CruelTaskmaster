@@ -40,8 +40,18 @@ export default function JobPageProvider({ children }) {
             setJobPageInfo({...jobPageInfo, sections: updatedSections, tasks: {...jobPageInfo.tasks, [newTaskKey]: newTask}})
         }
     )
+
+    const addSectionToBoard = useCallback(
+        (section) => {
+            const newSectionKey = 'section-block-' + section.id;
+            const newSection = { id: newSectionKey, title: section.title, taskIds: [] };
+            const newSectionOrder = jobPageInfo.sectionOrder;
+            newSectionOrder.push(newSectionKey);
+            setJobPageInfo({ ...jobPageInfo, sections: { ...jobPageInfo.sections, [newSectionKey]: newSection }, sectionOrder: newSectionOrder})
+        }
+    )
     return (
-        <JobPageContext.Provider value={{jobPageInfo, setJobPageInfo, populateJobBoard, addTaskToBoard}}>
+        <JobPageContext.Provider value={{jobPageInfo, setJobPageInfo, populateJobBoard, addTaskToBoard, addSectionToBoard}}>
             {children}
         </JobPageContext.Provider>
     );

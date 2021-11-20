@@ -5,11 +5,10 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useJobPage } from '../../context/JobPageContext';
 import { updateJob } from '../../store/jobs';
 import { updateSection } from '../../store/sections';
-import { updateTask } from '../../store/tasks';
 
 import JobBoardSection from "../JobBoard/JobBoardSection";
-import TaskBlock from "./TaskBlock";
 import AddTaskModal from "./AddTaskModal";
+import AddSectionModal from './AddSectionModal';
 import "./JobBoard.css";
 
 export default function JobBoard({ sections }) {
@@ -25,7 +24,6 @@ export default function JobBoard({ sections }) {
             if (response.ok) {
                 const jobFullInfo = await response.json();
                 const { job, sections, tasks } =  jobFullInfo;
-                console.log(jobFullInfo);
                 populateJobBoard(job, sections, tasks)
             }
         })()
@@ -61,7 +59,6 @@ export default function JobBoard({ sections }) {
             id: jobId,
             sectionOrder: newSectionIds.map(sectionId => sectionId.split("-")[2]).join("<>"),
         }
-        console.log(newSectionOrder)
         dispatch(updateJob(newSectionOrder));
     }
 
@@ -94,7 +91,6 @@ export default function JobBoard({ sections }) {
         const finish = jobPageInfo.sections[destination.droppableId];
 
         if (start === finish) {
-            console.log("same list!!")
             const newTaskIds = Array.from(start.taskIds);
             newTaskIds.splice(source.index, 1);
             newTaskIds.splice(destination.index, 0, draggableId);
@@ -111,13 +107,11 @@ export default function JobBoard({ sections }) {
                     [newSection.id]: newSection,
                 },
             };
-            console.log(newSection.id);
             setJobPageInfo(newPageInfo);
             swapWithinSection(newTaskIds, newSection.id);
             return;
         }
 
-        console.log("different lists")
         const startTaskIds = Array.from(start.taskIds);
         startTaskIds.splice(source.index, 1);
         const newStart = {
@@ -162,6 +156,7 @@ export default function JobBoard({ sections }) {
                     </div>
                 )}
             </Droppable>
+            <AddSectionModal />
             <AddTaskModal sections={sections}/>
         </DragDropContext>
     )

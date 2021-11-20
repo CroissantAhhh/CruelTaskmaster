@@ -18,7 +18,7 @@ export default function AddTaskModal({ sections }) {
     const jobs = useSelector(state => Object.values(state.jobs));
     const currentJob = jobs?.find(job => job.hashedId === jobHash)
 
-    const { jobPageInfo, setJobPageInfo, addTaskToBoard } = useJobPage();
+    const { addTaskToBoard } = useJobPage();
 
     async function postTask(e) {
         e.preventDefault();
@@ -50,7 +50,6 @@ export default function AddTaskModal({ sections }) {
         setShowModal(false);
     }
 
-    console.log(jobPageInfo);
 
     return (
         <>

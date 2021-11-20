@@ -34,6 +34,18 @@ export default function TaskBlock({ task, index }) {
         return;
     }
 
+    function editTaskDetails(e) {
+        e.preventDefault();
+
+        if (taskDetails) {
+            dispatch(updateTask({
+                id: task.id,
+                details: taskDetails,
+            }));
+        }
+        return;
+    }
+
     function closeDetail(e) {
         e.stopPropagation();
         setEditingTitle(false);
@@ -89,10 +101,20 @@ export default function TaskBlock({ task, index }) {
             <div className="task-detail-details">
                 <p className="task-detail-details-title">{"Details: "}</p>
                 <button className="task-detail-details-edit-toggle" onClick={() => setEditingDetails(!editingDetails)}>Edit</button>
-                {!editingDetails && (
-                    <p className="task-detail-details-display">{task.details}</p>
-                )}
-
+                {editingDetails
+                    ? (
+                        <p className="task-detail-details-display">{task.details}</p>
+                    )
+                    : (
+                        <form className="task-detail-details-edit" onSubmit={editTaskDetails}>
+                            <input type="textarea" value={taskDetails} onChange={e => setTaskDetails(e.target.value)}></input>
+                            {validationError && (
+                                <div className="task-detail-title-edit-error">
+                                    <p>Title cannot be empty.</p>
+                                </div>
+                            )}
+                        </form>
+                    )}
             </div>
             <button className="task-detail-close" onClick={e => closeDetail(e)}>x</button>
         </div>
