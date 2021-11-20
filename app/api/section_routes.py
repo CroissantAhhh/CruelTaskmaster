@@ -4,6 +4,13 @@ from app.models import db, Job, Section
 
 section_routes = Blueprint('sections', __name__)
 
+
+@section_routes.route('/<section_id>')
+@login_required
+def get_section(section_id):
+    section = Section.query.get(section_id)
+    return section.to_dict()
+
 @section_routes.route('/byJob/<job_hash>')
 @login_required
 def job_sections(job_hash):

@@ -15,8 +15,9 @@ def section_tasks(section_id):
 @login_required
 def post_task():
     data = request.json
+    print(data)
     task = Task(
-        job_id = data["jobId"],
+        section_id = data["sectionId"],
         title = data["title"],
         status = data["status"],
         details = data["details"],

@@ -56,6 +56,7 @@ export const updateSection = (formData) => async dispatch => {
     if (response.ok) {
         const section = await response.json();
         dispatch(add(section));
+        return section;
     }
 }
 

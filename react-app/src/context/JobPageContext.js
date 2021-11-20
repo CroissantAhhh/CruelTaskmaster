@@ -29,8 +29,19 @@ export default function JobPageProvider({ children }) {
         },
         [setJobPageInfo]
     )
+
+    const addTaskToBoard = useCallback(
+        (task) => {
+            const newTaskKey = 'task-block-' + task.id;
+            const parentSectionId = 'section-block-' + task.sectionId;
+            const newTask = { id: newTaskKey, title: task.title, status: task.status, details: task.details};
+            const updatedSections = {...jobPageInfo.sections}
+            updatedSections[parentSectionId].taskIds.push(newTaskKey);
+            setJobPageInfo({...jobPageInfo, sections: updatedSections, tasks: {...jobPageInfo.tasks, [newTaskKey]: newTask}})
+        }
+    )
     return (
-        <JobPageContext.Provider value={{jobPageInfo, setJobPageInfo, populateJobBoard}}>
+        <JobPageContext.Provider value={{jobPageInfo, setJobPageInfo, populateJobBoard, addTaskToBoard}}>
             {children}
         </JobPageContext.Provider>
     );

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { JobPageContext, useJobPage } from '../../context/JobPageContext';
+import { useJobPage } from '../../context/JobPageContext';
 import { updateJob } from '../../store/jobs';
 import { updateSection } from '../../store/sections';
 import { updateTask } from '../../store/tasks';
@@ -162,7 +162,7 @@ export default function JobBoard({ sections }) {
                     </div>
                 )}
             </Droppable>
-            <AddTaskModal />
+            <AddTaskModal sections={sections}/>
         </DragDropContext>
     )
 }
