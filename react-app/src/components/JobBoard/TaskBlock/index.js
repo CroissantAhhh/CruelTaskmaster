@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 
-import { updateTask } from '../../../store/tasks';
+import { useJobPage } from "../../../context/JobPageContext";
+import { updateTask, removeTask } from '../../../store/tasks';
+import DeleteConfirmationModal from '../../DeleteConfirmationModal';
 import "./TaskBlock.css";
+import { updateSection } from '../../../store/sections';
 
 export default function TaskBlock({ task, index }) {
     const dispatch = useDispatch();
+    const { jobPageInfo, setJobPageInfo } = useJobPage();
     const [editingTitle, setEditingTitle] = useState(false);
     const [editingDetails, setEditingDetails] = useState(false);
     const [taskTitle, setTaskTitle] = useState(task.title);
@@ -27,9 +31,20 @@ export default function TaskBlock({ task, index }) {
 
         if (taskTitle) {
             dispatch(updateTask({
-                id: task.id,
+                id: task.id.split("-")[2],
                 title: taskTitle
             }));
+            setJobPageInfo({
+                ...jobPageInfo,
+                tasks: {
+                    ...jobPageInfo.tasks,
+                    [task.id]: {
+                        ...jobPageInfo.tasks[task.id],
+                        title: taskTitle,
+                    }
+                }
+            });
+            closeDetail(e);
         }
         return;
     }
@@ -39,11 +54,36 @@ export default function TaskBlock({ task, index }) {
 
         if (taskDetails) {
             dispatch(updateTask({
-                id: task.id,
+                id: task.id.split("-")[2],
                 details: taskDetails,
             }));
+            setJobPageInfo({
+                ...jobPageInfo,
+                tasks: {
+                    ...jobPageInfo.tasks,
+                    [task.id]: {
+                        ...jobPageInfo.tasks[task.id],
+                        details: taskDetails,
+                    }
+                }
+            });
+            closeDetail(e);
         }
         return;
+    }
+
+    function deleteTask(e, task) {
+        dispatch(removeTask(task.id.split("-")[2]));
+        const updatedTasks = {...jobPageInfo.tasks};
+        delete updatedTasks[task.id];
+        const updatedSections = {...jobPageInfo.sections}
+        updatedSections[task.sectionId].taskIds.splice(updatedSections[task.sectionId].taskIds.indexOf(task.id), 1)
+        setJobPageInfo({
+            ...jobPageInfo,
+            sections: updatedSections,
+            tasks: updatedTasks,
+        });
+        closeDetail(e);
     }
 
     function closeDetail(e) {
@@ -101,7 +141,7 @@ export default function TaskBlock({ task, index }) {
             <div className="task-detail-details">
                 <p className="task-detail-details-title">{"Details: "}</p>
                 <button className="task-detail-details-edit-toggle" onClick={() => setEditingDetails(!editingDetails)}>Edit</button>
-                {editingDetails
+                {!editingDetails
                     ? (
                         <p className="task-detail-details-display">{task.details}</p>
                     )
@@ -116,6 +156,7 @@ export default function TaskBlock({ task, index }) {
                         </form>
                     )}
             </div>
+            <DeleteConfirmationModal deleteRequest={deleteTask} resource={task} resourceName={task.title} />
             <button className="task-detail-close" onClick={e => closeDetail(e)}>x</button>
         </div>
     )

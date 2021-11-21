@@ -59,7 +59,7 @@ export const updateTask = (formData) => async dispatch => {
     }
 }
 
-export const removetask = (taskId) => async dispatch => {
+export const removeTask = (taskId) => async dispatch => {
     const response = await fetch(`/api/tasks/${taskId}`, {
         method: "DELETE",
         headers: {

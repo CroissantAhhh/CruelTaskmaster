@@ -25,8 +25,11 @@ def post_task():
     db.session.add(task)
     parent_section = Section.query.get(task.section_id)
     section_task_order = parent_section.task_order.split('<>')
-    section_task_order.append(str(task.id))
-    parent_section.task_order = '<>'.join(section_task_order)
+    if len(section_task_order) == 0:
+        parent_section.task_order = str(task.id)
+    else:
+        section_task_order.append(str(task.id))
+        parent_section.task_order = '<>'.join(section_task_order)
     db.session.commit()
     return task.to_dict()
 
@@ -41,7 +44,7 @@ def update_task(task_id):
         task.section_id = str(data["sectionId"])
     if 'status' in data.keys():
         task.status = data["status"]
-    if 'description' in data.keys():
+    if 'details' in data.keys():
         task.details = data["details"]
     db.session.commit()
     return task.to_dict()
@@ -49,6 +52,15 @@ def update_task(task_id):
 @task_routes.route('/<int:task_id>', methods=['DELETE'])
 @login_required
 def delete_task(task_id):
-    Task.query.get(task_id).delete()
+    task = Task.query.get(task_id)
+    parent_section = Section.query.filter(Section.id == task.section_id).one()
+    section_task_order = parent_section.task_order.split("<>")
+    print(section_task_order)
+    section_task_order.remove(str(task_id));
+    if len(section_task_order) == 0:
+        parent_section.task_order = ''
+    else:
+        parent_section.task_order = "<>".join(section_task_order)
+    db.session.delete(task)
     db.session.commit()
     return {'taskId': task_id}

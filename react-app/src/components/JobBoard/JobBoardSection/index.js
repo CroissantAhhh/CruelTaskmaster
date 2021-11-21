@@ -23,6 +23,10 @@ export default function JobBoardSection({ section, tasks, index }) {
         backgroundColor: "white",
     });
 
+    const taskAreaStyle = {
+        height: '500px'
+    }
+
     function showSectionED(e) {
         e.stopPropagation();
         if (e.currentTarget.className === 'show-section-ED') {
@@ -88,7 +92,7 @@ export default function JobBoardSection({ section, tasks, index }) {
                     </div>
                     <Droppable droppableId={section.id} type="task">
                         {provided => (
-                            <div className={section.id + '-task-area'} {...provided.droppableProps} ref={provided.innerRef}>
+                            <div className={section.id + '-task-area'} style={taskAreaStyle} {...provided.droppableProps} ref={provided.innerRef}>
                                 {tasks
                                     ? tasks.map((task, index) => {
                                         return <TaskBlock key={task.id} task={task} index={index} />

@@ -152,6 +152,7 @@ export default function JobBoard({ sections }) {
         width: 500 * jobPageInfo.sectionOrder.length,
     }
 
+    console.log(jobPageInfo)
     return (
         <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId="all-job-sections" direction="horizontal" type="section">

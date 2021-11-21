@@ -21,7 +21,7 @@ export default function JobPageProvider({ children }) {
 
             for (let task of tasksInput) {
                 const newTaskKey = 'task-block-' + task.id;
-                const newTask = { id: newTaskKey, title: task.title, status: task.status, details: task.details}
+                const newTask = { id: newTaskKey, title: task.title, status: task.status, details: task.details, sectionId: 'section-block-' + task.sectionId}
                 taskObject[newTaskKey] = newTask;
             };
             const sectionOrderArray = jobInput.sectionOrder.map(sectionId => 'section-block-' + sectionId);
