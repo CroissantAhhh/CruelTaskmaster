@@ -5,6 +5,7 @@ import { loadJobSections } from '../../store/sections';
 import { loadSingleJob } from '../../store/jobs';
 import JobPageProvider from '../../context/JobPageContext';
 import JobBoard from '../../components/JobBoard';
+import './JobBoardPage.css';
 
 export default function JobBoardPage() {
     const dispatch = useDispatch();
@@ -24,14 +25,16 @@ export default function JobBoardPage() {
 
     return (
         <JobPageProvider>
-            <div className="job-board-page-container">
-                {sectionsLoaded && (
-                    <div className="job-board-page-content">
-                        <p>{currentJob.title}</p>
-                        <p>{currentJob.description}</p>
-                        <JobBoard sections={jobSections} />
-                    </div>
-                )}
+            <div className="job-board-page-container-container">
+                <div className="job-board-page-container">
+                    <p>{currentJob?.title}</p>
+                    <p>{currentJob?.description}</p>
+                    {sectionsLoaded && (
+                        <div className="job-board-page-content">
+                            <JobBoard sections={jobSections} />
+                        </div>
+                    )}
+                </div>
             </div>
         </JobPageProvider>
     )

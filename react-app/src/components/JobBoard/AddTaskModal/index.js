@@ -7,12 +7,11 @@ import { updateSection } from "../../../store/sections";
 import { useJobPage } from '../../../context/JobPageContext';
 
 
-export default function AddTaskModal({ sections }) {
+export default function AddTaskModal({ section }) {
     const dispatch = useDispatch();
     const { jobHash } = useParams();
     const [showModal, setShowModal] = useState(false);
     const [taskTitle, setTaskTitle] = useState("");
-    const [taskSection, setTaskSection] = useState();
     const [taskDetails, setTaskDetails] = useState("");
     const [validationError, setValidationError] = useState(false);
     const jobs = useSelector(state => Object.values(state.jobs));
@@ -22,34 +21,30 @@ export default function AddTaskModal({ sections }) {
 
     async function postTask(e) {
         e.preventDefault();
-        const targetSectionId = taskSection.split(",")[0];
-        const targetSectionTitle = taskSection.split(",")[1]
 
         const newTaskForm = {
-            sectionId: targetSectionId,
+            sectionId: section.id.split("-")[2],
             title: taskTitle,
-            status: targetSectionTitle,
+            status: section.title,
             details: taskDetails,
         };
 
         const newTask = await dispatch(addTask(newTaskForm));
-        const response = await fetch(`/api/sections/${targetSectionId}`);
-        const updatedSection = await response.json();
-        const newTaskOrder = updatedSection.taskOrder;
-        newTaskOrder.push(newTask.id);
+        // const response = await fetch(`/api/sections/${section.id.split("-")[2]}`);
+        // const updatedSection = await response.json();
+        // const newTaskOrder = updatedSection.taskOrder;
+        // newTaskOrder.push(newTask.id);
 
-        await dispatch(updateSection({
-            id: targetSectionId,
-            taskOrder: newTaskOrder.join("<>")
-        }));
+        // await dispatch(updateSection({
+        //     id: section.id.split("-")[2],
+        //     taskOrder: newTaskOrder.join("<>")
+        // }));
         addTaskToBoard(newTask);
 
         setTaskTitle("");
-        setTaskSection();
         setTaskDetails("");
         setShowModal(false);
     }
-
 
     return (
         <>
@@ -68,12 +63,6 @@ export default function AddTaskModal({ sections }) {
                             )}
                             <label htmlFor="task-title">Title</label>
                             <input id="task-title" type="text" value={taskTitle} onChange={e => setTaskTitle(e.target.value)}></input>
-                            <label htmlFor="task-status">Status</label>
-                            <select name="task-status" id="task-status" onChange={e => setTaskSection(e.target.value)}>
-                                {sections.map(section => (
-                                    <option value={[section.id, section.title]} key={section.id}>{section.title}</option>
-                                ))}
-                            </select>
                             <label htmlFor="task-details">Details</label>
                             <input id="task-details" type="textarea" value={taskDetails} onChange={e => setTaskDetails(e.target.value)}></input>
                             <button className="task-form-submit" type="submit" disabled={!taskTitle}>Create</button>

@@ -84,7 +84,6 @@ def update_job(job_id):
     if 'description' in data.keys():
         job.description = data["description"]
     if 'sectionOrder' in data.keys():
-        print("hellllllooooooo")
         job.section_order = data["sectionOrder"]
     db.session.commit()
     return job.to_dict()

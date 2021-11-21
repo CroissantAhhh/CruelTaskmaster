@@ -5,9 +5,9 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useJobPage } from '../../context/JobPageContext';
 import { updateJob } from '../../store/jobs';
 import { updateSection } from '../../store/sections';
+import { swapTasks, updateTask } from '../../store/tasks';
 
 import JobBoardSection from "../JobBoard/JobBoardSection";
-import AddTaskModal from "./AddTaskModal";
 import AddSectionModal from './AddSectionModal';
 import "./JobBoard.css";
 
@@ -38,19 +38,19 @@ export default function JobBoard({ sections }) {
         dispatch(updateSection(newTaskOrder));
     }
 
-    function swapBetweenSection(startNewOrder, finishNewOrder, startId, finishId) {
-        const task1Id = finishId.split("-")[2];
+    async function swapBetweenSection(startNewOrder, finishNewOrder, startId, finishId) {
+        const section1Id = finishId.split("-")[2];
         const newTask1Order = {
-            id: task1Id,
+            id: section1Id,
             taskOrder: finishNewOrder.map(taskId => taskId.split("-")[2]).join("<>"),
         }
-        dispatch(updateSection(newTask1Order));
-        const task2Id = startId.split("-")[2];
+        await dispatch(updateSection(newTask1Order));
+        const section2Id = startId.split("-")[2];
         const newTask2Order = {
-            id: task2Id,
+            id: section2Id,
             taskOrder: startNewOrder.map(taskId => taskId.split("-")[2]).join("<>"),
         }
-        dispatch(updateSection(newTask2Order));
+        await dispatch(updateSection(newTask2Order));
     }
 
     function swapSection(newSectionIds) {
@@ -113,7 +113,8 @@ export default function JobBoard({ sections }) {
         }
 
         const startTaskIds = Array.from(start.taskIds);
-        startTaskIds.splice(source.index, 1);
+        const task1Id = startTaskIds.splice(source.index, 1)[0];
+
         const newStart = {
             ...start,
             taskIds: startTaskIds,
@@ -126,8 +127,17 @@ export default function JobBoard({ sections }) {
             taskIds: finishTaskIds,
         };
 
+        const updatedTasks = {
+            ...jobPageInfo.tasks,
+            [task1Id]: {
+                ...jobPageInfo.tasks[task1Id],
+                status: newFinish.title
+            }
+        }
+
         const newPageInfo = {
             ...jobPageInfo,
+            tasks: updatedTasks,
             sections: {
                 ...jobPageInfo.sections,
                 [newStart.id]: newStart,
@@ -157,7 +167,6 @@ export default function JobBoard({ sections }) {
                 )}
             </Droppable>
             <AddSectionModal />
-            <AddTaskModal sections={sections}/>
         </DragDropContext>
     )
 }

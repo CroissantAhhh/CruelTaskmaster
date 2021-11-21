@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Task
+from app.models import db, Task, Section
 
 task_routes = Blueprint('tasks', __name__)
 
@@ -23,6 +23,10 @@ def post_task():
         details = data["details"],
     )
     db.session.add(task)
+    parent_section = Section.query.get(task.section_id)
+    section_task_order = parent_section.task_order.split('<>')
+    section_task_order.append(str(task.id))
+    parent_section.task_order = '<>'.join(section_task_order)
     db.session.commit()
     return task.to_dict()
 
@@ -33,6 +37,8 @@ def update_task(task_id):
     data = request.json
     if 'title' in data.keys():
         task.title = data["title"]
+    if 'sectionId' in data.keys():
+        task.section_id = str(data["sectionId"])
     if 'status' in data.keys():
         task.status = data["status"]
     if 'description' in data.keys():

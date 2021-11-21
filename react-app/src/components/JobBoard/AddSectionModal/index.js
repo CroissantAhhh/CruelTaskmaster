@@ -25,15 +25,15 @@ export default function AddSectionModal() {
         }
 
         const newSection = await dispatch(addSection(newSectionForm));
-        const response = await fetch(`/api/jobs/${jobHash}`);
-        const updatedJob = await response.json();
-        const newSectionOrder = updatedJob.sectionOrder;
-        newSectionOrder.push(newSection.id);
+        // const response = await fetch(`/api/jobs/${jobHash}`);
+        // const updatedJob = await response.json();
+        // const newSectionOrder = updatedJob.sectionOrder;
+        // newSectionOrder.push(newSection.id);
 
-        await dispatch(updateJob({
-            id: currentJob?.id,
-            sectionOrder: newSectionOrder.join("<>"),
-        }));
+        // await dispatch(updateJob({
+        //     id: currentJob?.id,
+        //     sectionOrder: newSectionOrder.join("<>"),
+        // }));
         addSectionToBoard(newSection);
 
         setSectionTitle("");

@@ -131,7 +131,6 @@ export default function TaskBlock({ task, index }) {
                     </div>
                     {taskDetail}
                 </div>
-
             )}
         </Draggable>
     )

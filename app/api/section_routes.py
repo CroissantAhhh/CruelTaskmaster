@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Job, Section
+from app.models import db, Job, Section, Task
 
 section_routes = Blueprint('sections', __name__)
 
@@ -29,6 +29,10 @@ def post_section():
         task_order = ""
     )
     db.session.add(section)
+    parent_job = Job.query.get(section.job_id)
+    job_section_order = parent_job.section_order.split('<>')
+    job_section_order.append(str(section.id))
+    parent_job.section_order = "<>".join(job_section_order)
     db.session.commit()
     return section.to_dict()
 
@@ -41,12 +45,26 @@ def update_section(section_id):
         section.title = data["title"]
     if 'taskOrder' in data.keys():
         section.task_order = data["taskOrder"]
+        sto_array = section.task_order.split('<>')
+        print(sto_array)
+        section_tasks = []
+        for task_id in sto_array:
+            section_tasks.append(Task.query.get(task_id))
+        print(section_tasks)
+        for task in section_tasks:
+            task.section_id = section.id
+            task.status = section.title
     db.session.commit()
     return section.to_dict()
 
 @section_routes.route('/<int:section_id>', methods=['DELETE'])
 @login_required
 def delete_section(section_id):
-    Section.query.get(section_id).delete()
+    section = Section.query.get(section_id)
+    parent_job = section.job
+    job_section_order = parent_job.section_order.split('<>')
+    job_section_order.remove(section_id)
+    parent_job.section_order = job_section_order.join('<>')
+    section.delete()
     db.session.commit()
     return {'sectionId': section_id}
