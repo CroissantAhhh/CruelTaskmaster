@@ -2,7 +2,8 @@
 
 const LOAD = 'environments/LOAD';
 const ADD = 'environments/ADD';
-const REMOVE = 'environments/REMOVE'
+const REMOVE = 'environments/REMOVE';
+const REMOVE_JOB = 'environments/REMOVE_JOB';
 
 const load = list => ({
     type: LOAD,
@@ -18,6 +19,12 @@ const remove = (environmentId) => ({
     type: REMOVE,
     environmentId
 });
+
+const removeJob = (environmentId, jobHash) => ({
+    type: REMOVE_JOB,
+    environmentId,
+    jobHash,
+})
 
 export const loadUserEnvironments = (userId) => async dispatch => {
     const response = await fetch(`/api/environments/byUser/${userId}`);
@@ -59,6 +66,10 @@ export const updateEnvironment = (formData) => async dispatch => {
     }
 }
 
+export const removeJobFromEnv = (environmentId, jobHash) => async dispatch => {
+    dispatch(removeJob(environmentId, jobHash));
+}
+
 export const removeEnvironment = (environmentId) => async dispatch => {
     const response = await fetch(`/api/environments/${environmentId}`, {
         method: "DELETE",
@@ -84,9 +95,15 @@ const environmentReducer = (state = {}, action) => {
         case ADD:
             return {...state, [action.environment.id]: action.environment}
         case REMOVE:
-            const newenvironments = {...state};
-            delete newenvironments[action.environmentId];
-            return newenvironments;
+            const newEnvironments = {...state};
+            delete newEnvironments[action.environmentId];
+            return newEnvironments;
+        case REMOVE_JOB:
+            const updatedEnvs = {...state};
+            const targetEnv = updatedEnvs[action.environmentId];
+            const targetEnvJobs = targetEnv.jobLinks;
+            targetEnvJobs = targetEnvJobs.filter(jobLink => jobLink.link === action.jobHash);
+            return updatedEnvs;
         default:
             return state;
     }

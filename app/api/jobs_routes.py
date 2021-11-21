@@ -4,6 +4,8 @@ from app.models import db, Job, Section, Task
 import random
 import string
 
+from app.models.models import Environment
+
 job_routes = Blueprint('jobs', __name__)
 
 def generate_hash_id():
@@ -46,31 +48,36 @@ def get_job_full(job_hash):
 @login_required
 def post_job():
     data = request.json
+    parent_environment = Environment.query.filter(Environment.hashed_id == data["environmentHash"]).one()
     job = Job(
-        environment_id = data["environmentId"],
+        environment_id = parent_environment.id,
         hashed_id = generate_hash_id(),
         title = data["title"],
         description = data["description"],
+        section_order = '',
     )
     db.session.add(job)
+    db.session.commit()
     TD = Section(
         job_id = job.id,
         title = 'To-do',
-        taskOrder = '',
+        task_order = '',
     )
     IP = Section(
         job_id = job.id,
         title = 'In Progress',
-        taskOrder = '',
+        task_order = '',
     )
     C = Section(
         job_id = job.id,
         title = 'Complete',
-        taskOrder = '',
+        task_order = '',
     )
     db.session.add(TD)
     db.session.add(IP)
     db.session.add(C)
+    db.session.commit()
+    job.section_order = f"{TD.id}<>{IP.id}<>{C.id}"
     db.session.commit()
     return job.to_dict()
 
@@ -91,6 +98,7 @@ def update_job(job_id):
 @job_routes.route('/<int:job_id>', methods=['DELETE'])
 @login_required
 def delete_job(job_id):
-    Job.query.get(job_id).delete()
+    job = Job.query.get(job_id)
+    db.session.delete(job)
     db.session.commit()
     return {'jobId': job_id}

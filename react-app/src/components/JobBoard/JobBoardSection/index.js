@@ -82,7 +82,7 @@ export default function JobBoardSection({ section, tasks, index }) {
         return;
     }
 
-    async function deleteSection(e) {
+    async function deleteSection(e, section) {
         dispatch(removeSection(section.id.split("-")[2]));
         const updatedSectionOrder = [...jobPageInfo.sectionOrder]
         updatedSectionOrder.splice(updatedSectionOrder.indexOf(section.id), 1);

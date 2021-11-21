@@ -38,7 +38,7 @@ export const loadSingleJob = (jobHash) => async dispatch => {
 }
 
 export const addJob = (formData) => async dispatch => {
-    const response  = await fetch("/api/jobs", {
+    const response  = await fetch("/api/jobs/", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -65,6 +65,7 @@ export const updateJob = (formData) => async dispatch => {
     if (response.ok) {
         const job = await response.json();
         dispatch(add(job));
+        return job;
     }
 }
 
