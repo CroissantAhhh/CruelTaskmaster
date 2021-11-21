@@ -5,11 +5,14 @@ import { useParams } from 'react-router-dom';
 
 import TaskBlock from '../TaskBlock'
 import AddTaskModal from '../AddTaskModal'
+import { useJobPage } from '../../../context/JobPageContext';
+import DeleteConfirmationModal from '../../DeleteConfirmationModal';
 import { updateSection, removeSection } from '../../../store/sections';
 
 export default function JobBoardSection({ section, tasks, index }) {
     const dispatch = useDispatch();
     const { jobHash } = useParams();
+    const { jobPageInfo, setJobPageInfo } = useJobPage();
     const userJobs = useSelector(state => Object.values(state.jobs));
     const currentJob = userJobs?.find(job => job.hashedId === jobHash);
     const [sectionTitle, setSectionTitle] = useState(section.title);
@@ -53,30 +56,62 @@ export default function JobBoardSection({ section, tasks, index }) {
         })
     }
 
-    async function editSectionDetails(e) {
+    async function editSectionTitle(e) {
         e.preventDefault();
 
         if (sectionTitle) {
             dispatch(updateSection({
-                id: section.id,
+                id: section.id.split("-")[2],
                 title: sectionTitle,
             }));
         }
+        const updatedSections = {...jobPageInfo.sections};
+        updatedSections[section.id].title = sectionTitle;
+        const updatedTasks = {...jobPageInfo.tasks};
+        for (let task of Object.keys(updatedTasks)) {
+            if (updatedTasks[task].sectionId === section.id) {
+                updatedTasks[task].status = sectionTitle;
+            }
+        }
+        setJobPageInfo({
+            ...jobPageInfo,
+            sections: updatedSections,
+            tasks: updatedTasks,
+        });
+        closeSectionED(e);
         return;
     }
 
     async function deleteSection(e) {
-        dispatch(removeSection(section.id))
+        dispatch(removeSection(section.id.split("-")[2]));
+        const updatedSectionOrder = [...jobPageInfo.sectionOrder]
+        updatedSectionOrder.splice(updatedSectionOrder.indexOf(section.id), 1);
+        const updatedSections = {...jobPageInfo.sections};
+        delete updatedSections[section.id];
+        const updatedTasks = {...jobPageInfo.tasks};
+        for (let task of Object.keys(updatedTasks)) {
+            if (updatedTasks[task].sectionId === section.id) {
+                delete updatedTasks[task];
+            }
+        }
+        setJobPageInfo({
+            ...jobPageInfo,
+            sectionOrder: updatedSectionOrder,
+            sections: updatedSections,
+            tasks: updatedTasks,
+        });
+        closeSectionED(e);
+        return;
     }
 
     const editDeleteSection = (
         <div className="edit-delete-section-container" style={sectionEDStyle}>
             <button className="close-section-ED" onClick={e => closeSectionED(e)}>x</button>
             <p className="edit-section-title">Edit Section Title</p>
-            <form className="edit-section-title-form" onSubmit={editSectionDetails}>
+            <form className="edit-section-title-form" onSubmit={editSectionTitle}>
                 <input type="text" value={sectionTitle} onChange={e => setSectionTitle(e.target.value)}></input>
             </form>
-            <button className="delete-section-button" onClick={deleteSection}>Delete Section</button>
+            <DeleteConfirmationModal deleteRequest={deleteSection} resource={section} resourceName={section.title} />
         </div>
     )
 

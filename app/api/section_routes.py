@@ -48,16 +48,16 @@ def update_section(section_id):
         section.title = data["title"]
     if 'taskOrder' in data.keys():
         section.task_order = data["taskOrder"]
-        if data["taskOrder"] != "":
-            sto_array = section.task_order.split('<>')
-            print(sto_array)
-            section_tasks = []
-            for task_id in sto_array:
-                section_tasks.append(Task.query.get(task_id))
-            print(section_tasks)
-            for task in section_tasks:
-                task.section_id = section.id
-                task.status = section.title
+    if section.task_order != "":
+        sto_array = section.task_order.split('<>')
+        print(sto_array)
+        section_tasks = []
+        for task_id in sto_array:
+            section_tasks.append(Task.query.get(task_id))
+        print(section_tasks)
+        for task in section_tasks:
+            task.section_id = section.id
+            task.status = section.title
     db.session.commit()
     return section.to_dict()
 
@@ -67,8 +67,11 @@ def delete_section(section_id):
     section = Section.query.get(section_id)
     parent_job = section.job
     job_section_order = parent_job.section_order.split('<>')
-    job_section_order.remove(section_id)
-    parent_job.section_order = job_section_order.join('<>')
-    section.delete()
+    job_section_order.remove(str(section_id))
+    if len(job_section_order) == 0:
+        parent_job.section_order = ''
+    else:
+        parent_job.section_order = '<>'.join(job_section_order)
+    db.session.delete(section)
     db.session.commit()
     return {'sectionId': section_id}
