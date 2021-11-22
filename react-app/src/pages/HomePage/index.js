@@ -2,6 +2,9 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
+import EnvironmentCard from '../../components/EnvironmentCard';
+import CreateEnvironmentModal from "../../components/CreateEnvironmentModal";
+
 export default function HomePage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const history = useHistory();
@@ -20,8 +23,9 @@ export default function HomePage() {
                 <div className="home-page-content">
                     <p>Home Page</p>
                     {userEnvironments.map((env) => {
-                        return <Link to={`/environments/${env.hashedId}`} key={`${env.hashedId} + ${env.id}`} exact={"true"}>{env.title}</Link>
+                        return <EnvironmentCard environment={env} />
                     })}
+                    <CreateEnvironmentModal />
                 </div>
             )}
 

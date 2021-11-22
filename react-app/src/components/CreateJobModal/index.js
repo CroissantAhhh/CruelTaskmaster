@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { addJob } from "../../store/jobs";
+import { addJobToEnv } from '../../store/environments';
 import { Modal } from '../../context/Modal'
 
-export default function CreateJobModal() {
+export default function CreateJobModal({ envId }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { environmentHash } = useParams();
@@ -23,6 +24,7 @@ export default function CreateJobModal() {
         }
 
         const newJob = await dispatch(addJob(newJobForm));
+        await dispatch(addJobToEnv(envId, newJob));
         history.push(`/jobs/${newJob.hashedId}`);
     }
 

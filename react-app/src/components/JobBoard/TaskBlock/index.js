@@ -72,8 +72,8 @@ export default function TaskBlock({ task, index }) {
         return;
     }
 
-    function deleteTask(e, task) {
-        dispatch(removeTask(task.id.split("-")[2]));
+    async function deleteTask(e, task) {
+        await dispatch(removeTask(task.id.split("-")[2]));
         const updatedTasks = {...jobPageInfo.tasks};
         delete updatedTasks[task.id];
         const updatedSections = {...jobPageInfo.sections}

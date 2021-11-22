@@ -2,6 +2,7 @@
 
 const LOAD = 'environments/LOAD';
 const ADD = 'environments/ADD';
+const ADD_JOB = 'environments/ADD_JOB'
 const REMOVE = 'environments/REMOVE';
 const REMOVE_JOB = 'environments/REMOVE_JOB';
 
@@ -12,12 +13,18 @@ const load = list => ({
 
 const add = (environment) => ({
     type: ADD,
-    environment
+    environment,
 });
+
+const addJob = (environmentId, job) => ({
+    type: ADD_JOB,
+    environmentId,
+    job,
+})
 
 const remove = (environmentId) => ({
     type: REMOVE,
-    environmentId
+    environmentId,
 });
 
 const removeJob = (environmentId, jobHash) => ({
@@ -36,7 +43,7 @@ export const loadUserEnvironments = (userId) => async dispatch => {
 };
 
 export const addEnvironment = (formData) => async dispatch => {
-    const response  = await fetch("/api/environments", {
+    const response  = await fetch("/api/environments/", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -64,6 +71,10 @@ export const updateEnvironment = (formData) => async dispatch => {
         const environment = await response.json();
         dispatch(add(environment));
     }
+}
+
+export const addJobToEnv = (environmentId, job) => async dispatch => {
+    dispatch(addJob(environmentId, job));
 }
 
 export const removeJobFromEnv = (environmentId, jobHash) => async dispatch => {
@@ -94,16 +105,31 @@ const environmentReducer = (state = {}, action) => {
             return newState;
         case ADD:
             return {...state, [action.environment.id]: action.environment}
+        case ADD_JOB:
+            const updatedJobLinks = [...state[action.environmentId].jobLinks];
+            updatedJobLinks.push({ title: action.job.title, link: action.job.link });
+            return {...state,
+                [action.environmentId]: {
+                    ...state[action.environmentId],
+                    jobLinks: updatedJobLinks,
+                }
+            };
         case REMOVE:
             const newEnvironments = {...state};
             delete newEnvironments[action.environmentId];
             return newEnvironments;
         case REMOVE_JOB:
-            const updatedEnvs = {...state};
-            const targetEnv = updatedEnvs[action.environmentId];
-            const targetEnvJobs = targetEnv.jobLinks;
-            targetEnvJobs = targetEnvJobs.filter(jobLink => jobLink.link === action.jobHash);
-            return updatedEnvs;
+            console.log(action)
+            const updatedEnv = {...state};
+            const targetEnv = updatedEnv[action.environmentId];
+            let targetEnvJobs = targetEnv.jobLinks;
+            targetEnvJobs = targetEnvJobs.filter(jobLink => jobLink.link !== action.jobHash);
+            return {...updatedEnv,
+                    [action.environmentId]: {
+                        ...updatedEnv[action.environmentId],
+                        jobLinks: targetEnvJobs,
+                    }
+            };
         default:
             return state;
     }

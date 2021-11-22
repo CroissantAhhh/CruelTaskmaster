@@ -18,7 +18,7 @@ export default function EnvironmentPage() {
         if (currentEnvironment) {
             dispatch(loadEnvironmentJobs(currentEnvironment?.id)).then(() => setIsLoaded(true));
         }
-    }, [currentEnvironment, dispatch])
+    }, [currentEnvironment?.id, dispatch])
 
     return (
         <div className="environment-page-container">
@@ -30,7 +30,7 @@ export default function EnvironmentPage() {
                         {currentEnvironment.jobLinks.map((job) => {
                             return <JobBoardCard job={job} key={job.link} />
                         })}
-                        <CreateJobModal />
+                        <CreateJobModal envId={currentEnvironment?.id} />
                     </div>
                 </div>
             )}
