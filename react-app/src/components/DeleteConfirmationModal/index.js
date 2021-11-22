@@ -13,7 +13,7 @@ export default function DeleteConfirmationModal({ deleteRequest, resource, resou
                         <p>{`Are you sure you wish to delete "${resourceName}"?`}</p>
                         <p></p>
                         <div className="delete-yes-no">
-                            <button className="delete-yes" onClick={(e) => deleteRequest(e, resource)}>Yes</button>
+                            <button className="delete-yes" onClick={(e) => {deleteRequest(e, resource); setShowModal(false)}}>Yes</button>
                             <button className="delete-no" onClick={() => setShowModal(false)}>No</button>
                         </div>
                     </div>

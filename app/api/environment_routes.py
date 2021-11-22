@@ -45,6 +45,7 @@ def update_environment(environment_id):
 @environment_routes.route('/<int:environment_id>', methods=['DELETE'])
 @login_required
 def delete_environment(environment_id):
-    Environment.query.get(environment_id).delete()
+    env = Environment.query.get(environment_id)
+    db.session.delete(env)
     db.session.commit()
     return {'environmentId': environment_id}

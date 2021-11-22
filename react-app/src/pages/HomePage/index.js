@@ -23,7 +23,7 @@ export default function HomePage() {
                 <div className="home-page-content">
                     <p>Home Page</p>
                     {userEnvironments.map((env) => {
-                        return <EnvironmentCard environment={env} />
+                        return <EnvironmentCard key={env.hashedId} environment={env} />
                     })}
                     <CreateEnvironmentModal />
                 </div>
