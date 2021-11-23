@@ -37,26 +37,28 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Switch>
-        <Route path='/' exact={true} >
-          <SplashPage />
-        </Route>
-        <Route path='/login' exact={true}>
-          <LoginPage />
-        </Route>
-        <Route path='/signup' exact={true}>
-          <SignupPage />
-        </Route>
-        <ProtectedRoute path='/environments/:environmentHash' exact={true} >
-          <EnvironmentPage/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/jobs/:jobHash' exact={true} >
-          <JobBoardPage />
-        </ProtectedRoute>
-        <ProtectedRoute path='/home' exact={true} >
-          <HomePage/>
-        </ProtectedRoute>
-      </Switch>
+      <div className="main-page-content">
+        <Switch>
+          <Route path='/' exact={true} >
+            <SplashPage />
+          </Route>
+          <Route path='/login' exact={true}>
+            <LoginPage />
+          </Route>
+          <Route path='/signup' exact={true}>
+            <SignupPage />
+          </Route>
+          <ProtectedRoute path='/environments/:environmentHash' exact={true} >
+            <EnvironmentPage/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/jobs/:jobHash' exact={true} >
+            <JobBoardPage />
+          </ProtectedRoute>
+          <ProtectedRoute path='/home' exact={true} >
+            <HomePage/>
+          </ProtectedRoute>
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }

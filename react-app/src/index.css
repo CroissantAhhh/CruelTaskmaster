@@ -1,1 +1,22 @@
 /* TODO Add site wide styles */
+.site-nav-bar {
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    border: 1px solid black;
+    background-color: #85261c;
+    display: flex;
+    align-items: center;
+}
+
+.site-nav-bar > ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.main-page-content {
+    margin-top: 100px;
+}

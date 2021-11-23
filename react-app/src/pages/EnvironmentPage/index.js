@@ -15,7 +15,7 @@ export default function EnvironmentPage() {
     const currentEnvironment = userEnvironments?.find(env => env.hashedId === environmentHash);
 
     useEffect(() => {
-        if (currentEnvironment) {
+        if (currentEnvironment?.id) {
             dispatch(loadEnvironmentJobs(currentEnvironment?.id)).then(() => setIsLoaded(true));
         }
     }, [currentEnvironment?.id, dispatch])
