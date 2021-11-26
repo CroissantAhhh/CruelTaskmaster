@@ -9,6 +9,7 @@ import JobBoardPage from './pages/JobBoardPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import SplashPage from './pages/SplashPage';
+import Footer from './components/Footer';
 import { authenticate } from './store/session';
 import { loadUserEnvironments } from './store/environments';
 
@@ -59,6 +60,7 @@ function App() {
           </ProtectedRoute>
         </Switch>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

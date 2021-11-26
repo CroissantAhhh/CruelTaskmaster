@@ -1,4 +1,10 @@
 /* TODO Add site wide styles */
+
+@font-face {
+    font-family: Bebasneue;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637873845/BebasNeue-Regular_orwsih.ttf)
+}
+
 .site-nav-bar {
     height: 70px;
     width: 100%;
@@ -8,15 +14,21 @@
     background-color: #85261c;
     display: flex;
     align-items: center;
+    z-index: 1000;
 }
 
-.site-nav-bar > ul {
-    width: 100%;
+.site-nav-bar-logo-area {
+    width: 20%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
 .main-page-content {
-    margin-top: 100px;
+    margin-top: 70px;
+    margin-bottom: -10px;
+}
+
+.site-nav-bar-auth {
+
 }

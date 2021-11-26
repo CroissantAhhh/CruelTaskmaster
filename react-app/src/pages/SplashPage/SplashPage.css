@@ -1,0 +1,62 @@
+@font-face {
+    font-family: Bebasneue;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637873845/BebasNeue-Regular_orwsih.ttf)
+}
+
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
+.splash-page-container {
+    position: relative;
+}
+
+.splash-page-text-info {
+    position: absolute;
+    z-index: 1;
+    top: 200px;
+    left: 50px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash-page-slogan {
+    font-size: 200px;
+    font-family: Bebasneue;
+}
+
+.splash-page-description {
+    font-size: 40px;
+    font-family: Spartan;
+}
+
+.login-signup {
+    width: 50%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: Spartan;
+    font-size: 30px;
+}
+
+.login-signup a {
+    font-family: Bebasneue;
+    text-decoration: none;
+    font-size: 90px;
+    color: white;
+}
+
+.login-signup a:hover {
+    color: black;
+}
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
