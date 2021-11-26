@@ -5,6 +5,11 @@
     src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637873845/BebasNeue-Regular_orwsih.ttf)
 }
 
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
 .site-nav-bar {
     height: 70px;
     width: 100%;
@@ -21,7 +26,7 @@
     width: 20%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .main-page-content {
@@ -29,6 +34,111 @@
     margin-bottom: -10px;
 }
 
-.site-nav-bar-auth {
+.nav-bar-logged-out {
+    width: 80%;
+}
 
+.warning-message {
+    width: 75%;
+    display: flex;
+    font-family: Bebasneue;
+    font-size: 40px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.warning-message > p {
+    margin: 0 20px;
+}
+
+.placeholder-section {
+    width: 25%;
+}
+
+.nav-bar-logged-in {
+    height: 100%;
+    width: 80%;
+    display: flex;
+}
+
+.site-nav-bar-utils {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    font-family: Bebasneue;
+    color: white;
+    font-size: 30px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dropdown-board-links {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-hover-container {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-hover-container:hover {
+    background-color: #8E3C45;
+}
+
+.create-new-environment-board {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+svg {
+    font-size: 10px;
+}
+
+.placeholder-section-logged {
+    width: 50%;
+}
+
+.site-nav-bar-auth {
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: Bebasneue;
+    color: white;
+    font-size: 30px;
+}
+
+.user-message {
+    text-align: right;
+}
+
+.logout-button {
+    width: 70%;
+    height: 100%;
+    background-color: #85261c;
+    border: none;
+    color: white;
+    font-family: Bebasneue;
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout-button:hover {
+    color: black;
 }

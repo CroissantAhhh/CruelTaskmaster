@@ -39,7 +39,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   async function demoLogin(e) {
