@@ -1,0 +1,119 @@
+@font-face {
+    font-family: Bebasneue;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637873845/BebasNeue-Regular_orwsih.ttf)
+}
+
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
+.signup-page-container {
+    height: 1000px;
+    width: 100%;
+    background-color: #1A3D54;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form-border {
+    height: 70%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    margin-bottom: 100px;
+    border-radius: 20px;
+}
+
+.signup-page-form {
+    height: 90%;
+    width: 90%;
+    background-color: #633B1D;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.signup-form {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form-section {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 20%;
+    justify-content: space-evenly;
+}
+
+.signup-form-buttons {
+    width: 80%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signup-form-buttons button {
+    width: 49%;
+    height: 50%;
+    background-color: #1A3D54;
+    border: none;
+    color: white;
+    font-family: Bebasneue;
+    font-size: 30px;
+}
+
+.signup-form-buttons button:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.signup-form-section label {
+    font-size: 20px;
+}
+
+.signup-form-section input {
+    height: 40%;
+    background-color: #3B2516;
+    border-color: black;
+    color: white;
+    font-family: Spartan;
+    font-size: 20px;
+}
+
+.signup-form-section input:focus {
+    border-color: black;
+    outline: none;
+}
+
+.signup-form-title {
+    font-family: Bebasneue;
+    color: white;
+    font-size: 100px;
+    margin: 30px;
+}
+
+.signup-page-form {
+    font-family: Spartan;
+    color: white;
+}
+
+.signup-form-header {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 40px;
+    width: 100%;
+}
