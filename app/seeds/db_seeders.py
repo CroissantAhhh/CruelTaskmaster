@@ -5,7 +5,17 @@ import datetime as dt
 from random import randint, choice, sample
 import json
 
-
+banners = [
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971507/banners/banner3_vk9nby.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971507/banners/banner9_mqqi9h.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971508/banners/banner4_d0fyne.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971508/banners/banner2_neeaxg.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971505/banners/banner7_w8fa6i.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971505/banners/banner5_cxud1a.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971506/banners/banner10_wa6vc6.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971504/banners/banner6_bdksig.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971504/banners/banner8_buf9zs.jpg",
+    ]
 
 
 def seed_users():
@@ -28,16 +38,19 @@ def seed_environments():
     job_env = Environment(
         user_id=1,
         title='Career',
+        banner=choice(banners),
         description='Everything related to career, job searching, resume and portfolio work, personal projects, actual work tasks (hopefully eventually)',
     )
     fit_env = Environment(
         user_id=1,
         title='Health and Fitness',
+        banner=choice(banners),
         description='Anything related to my physical health, will mostly pertain to exercise and diet'
     )
     gaming_env = Environment(
         user_id=1,
         title='Gaming',
+        banner=choice(banners),
         description='Gaming related objectives'
     )
     job_env.set_hashed_id()
@@ -56,54 +69,63 @@ def seed_jobs():
     env1_j1 = Job(
         environment_id=1,
         title='Avatune',
+        banner=choice(banners),
         description='Continuation of work and development of features on my React solo project, Avatune',
         section_order='',
     )
     env1_j2 = Job(
         environment_id=1,
         title='Portfolio',
+        banner=choice(banners),
         description='Work on documentation and presenting of my web-related projects, fleshed out READMEs, links and visuals on my LinkedIn',
         section_order='',
     )
     env1_j3 = Job(
         environment_id=1,
         title='Networking',
+        banner=choice(banners),
         description='Social outreaching, looking for people who may introduce me to desirable career prospects and opportunities',
         section_order='',
     )
     env1_j4 = Job(
         environment_id=1,
         title='Cruel Taskmaster',
+        banner=choice(banners),
         description='Continuation of work and development of features on my solo capstone project, Cruel Taskmaster',
         section_order='',
     )
     env2_j1 = Job(
         environment_id=2,
         title='Weekly Exercise',
+        banner=choice(banners),
         description='Weekly workout and exercise plan',
         section_order='',
     )
     env2_j2 = Job(
         environment_id=2,
         title='Weekly Meal Plan',
+        banner=choice(banners),
         description='Weekly dieting plan',
         section_order='',
     )
     env3_j1 = Job(
         environment_id=3,
         title='TFT',
+        banner=choice(banners),
         description='Objectives and goals related to TFT',
         section_order='',
     )
     env3_j2 = Job(
         environment_id=3,
         title='Animal Crossing',
+        banner=choice(banners),
         description='Objectives and goals related to Animal Crossing',
         section_order='',
     )
     env3_j3 = Job(
         environment_id=3,
         title='Minecraft',
+        banner=choice(banners),
         description='Objectives and goals related to Minecraft',
         section_order='',
     )

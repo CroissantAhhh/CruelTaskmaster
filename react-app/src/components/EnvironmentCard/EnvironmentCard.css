@@ -1,5 +1,49 @@
+@font-face {
+    font-family: Bebasneue;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637873845/BebasNeue-Regular_orwsih.ttf)
+}
+
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
+.environment-card-border {
+    height: 300px;
+    width: 30%;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+    background-color: #A56C37;
+    border-radius: 20px;
+}
+
 .environment-card {
-    height: 200px;
-    width: 300px;
-    border: 1px solid black;
+    height: 90%;
+    width: 100%;
+}
+
+.environment-card img {
+    border-radius: 20px 20px 0px 0px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-family: Spartan;
+    font-size: 30px;
+}
+
+.env-card-bottom {
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+.show-env-ED {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
 }

@@ -62,5 +62,7 @@
     width: 90%;
     background-color: #633B1D;
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    border-radius: 20px;
+    padding-bottom: 2.5%;
 }

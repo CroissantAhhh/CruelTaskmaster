@@ -80,10 +80,19 @@ export default function EnvironmentCard({ environment }) {
     )
 
     return (
-        <div className="environment-card">
-            <Link className="environment-card-title" to={`/environments/${environment.hashedId}`}>{environment.title}</Link>
-            <button className="show-env-ED" onClick={showEnvED}>...</button>
-            {editDeleteEnv}
+        <div className="environment-card-border">
+            <div className="environment-card">
+                <img src={environment.banner} alt="env card background" height="80%" width="100%"></img>
+                <div className="env-card-bottom">
+                    <Link className="environment-card-title" to={`/environments/${environment.hashedId}`}>{environment.title}</Link>
+                    <button className="show-env-ED" onClick={showEnvED}>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" width="40px" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                        </svg>
+                    </button>
+                </div>
+                {editDeleteEnv}
+            </div>
         </div>
     )
 }

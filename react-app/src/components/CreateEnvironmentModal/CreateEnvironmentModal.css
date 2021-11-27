@@ -1,0 +1,39 @@
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
+.create-new-environment-section {
+    height: 300px;
+    width: 30%;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+    background-color: #A56C37;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.create-new-environment-section:hover {
+    background-color: #b37e4e;
+}
+
+.create-new-environment-button {
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.create-new-environment-title {
+    width: 100%;
+    color: white;
+    font-size: 35px;
+    font-family: Spartan;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}

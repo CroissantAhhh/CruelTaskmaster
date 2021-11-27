@@ -43,6 +43,7 @@ class Environment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     hashed_id = db.Column(db.String)
     title = db.Column(db.String, nullable=False)
+    banner = db.Column(db.String(500), nullable=False)
     description = db.Column(db.String)
 
     def set_hashed_id(self):
@@ -54,6 +55,7 @@ class Environment(db.Model):
             'userId': self.user_id,
             'hashedId': self.hashed_id,
             'title': self.title,
+            'banner': self.banner,
             'description': self.description,
             'jobLinks': [{"link": job.to_dict()["hashedId"], "title": job.to_dict()["title"]} for job in self.jobs]
         }
@@ -68,6 +70,7 @@ class Job(db.Model):
     environment_id = db.Column(db.Integer, db.ForeignKey("environments.id"), nullable=False)
     hashed_id = db.Column(db.String)
     title = db.Column(db.String, nullable=False)
+    banner = db.Column(db.String(500), nullable=False)
     description = db.Column(db.String)
     section_order = db.Column(db.String(1000), nullable=False)
 
@@ -80,6 +83,7 @@ class Job(db.Model):
             'environmentId': self.environment_id,
             'hashedId': self.hashed_id,
             'title': self.title,
+            'banner': self.banner,
             'description': self.description,
             'sectionOrder': self.section_order.split('<>') if self.section_order else [],
         }

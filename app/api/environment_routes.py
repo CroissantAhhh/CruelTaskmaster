@@ -6,6 +6,18 @@ import string
 
 environment_routes = Blueprint('environments', __name__)
 
+banners = [
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971507/banners/banner3_vk9nby.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971507/banners/banner9_mqqi9h.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971508/banners/banner4_d0fyne.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971508/banners/banner2_neeaxg.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971505/banners/banner7_w8fa6i.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971505/banners/banner5_cxud1a.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971506/banners/banner10_wa6vc6.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971504/banners/banner6_bdksig.jpg",
+        "https://res.cloudinary.com/dmtj0amo0/image/upload/v1637971504/banners/banner8_buf9zs.jpg",
+    ]
+
 def generate_hash_id():
     return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10))
 
@@ -24,6 +36,7 @@ def post_environment():
         user_id = data["userId"],
         hashed_id = generate_hash_id(),
         title = data["title"],
+        banner = random.choice(banners),
         description = data["description"],
     )
     db.session.add(environment)
