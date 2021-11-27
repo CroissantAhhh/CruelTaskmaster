@@ -1,0 +1,168 @@
+@font-face {
+    font-family: Bebasneue;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637873845/BebasNeue-Regular_orwsih.ttf)
+}
+
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
+.environment-page-container {
+    display: flex;
+    justify-content: center;
+    background-color: #1A3D54;
+    padding-bottom: 10px;
+}
+
+.environment-page-content {
+    width: 80%;
+    background-color: #633B1D;
+}
+
+.env-welcome-banner {
+    position: relative;
+}
+
+.transparent-filter {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.env-welcome-text {
+    color: white;
+    position: absolute;
+    z-index: 2;
+    top: 150px;
+    margin: 0 20%;
+    text-align: center;
+}
+
+.env-title {
+    font-size: 100px;
+    font-family: Bebasneue;
+}
+
+.env-desc {
+    font-size: 30px;
+    font-family: Spartan;
+}
+
+.jobs-log-header {
+    width: 100%;
+    color: white;
+    font-size: 50px;
+    font-family: Bebasneue;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    top: 2%;
+}
+
+.jobs-log-container {
+    height: 800px;
+    width: 100%;
+    position: relative;
+    background-color: #3B2516;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jobs-log {
+    width: 90%;
+    height: 80%;
+    background-color: #633B1D;
+    display: flex;
+    border-radius: 20px;
+}
+
+.job-log-cards-section {
+    height: 100%;
+    width: 50%;
+    background-color: #A56C37;
+    overflow: scroll;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.job-log-cards-header {
+    width: 100%;
+    height: 30px;
+    background-color: #633B1D;
+    color: white;
+    font-family: Spartan;
+    font-size: 30px;
+    text-align: center;
+    padding: 20px 0px;
+    border-radius: 20px 0px 0px 0px;
+}
+
+.job-log-card {
+    height: 70px;
+    width: 96%;
+    margin: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #633B1D;
+    border-radius: 20px;
+    color: white;
+    font-family: Spartan;
+    cursor: pointer;
+}
+
+.job-log-card > p {
+    margin-left: 30px;
+}
+
+.job-details {
+    height: 100%;
+    width: 50%;
+    background-color: #A56C37;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.job-details-header {
+    width: 100%;
+    height: 30px;
+    background-color: #633B1D;
+    color: white;
+    font-family: Spartan;
+    font-size: 30px;
+    text-align: center;
+    padding: 20px 0px;
+    border-radius: 0px 20px 0px 0px;
+}
+
+.job-details-info {
+    width: 96%;
+    margin: 2%;
+    position: relative;
+}
+
+.job-details-info-title {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    top: 20%;
+    color: white;
+    font-size: 50px;
+    font-family: Spartan;
+}
+
+.job-details-info-desc {
+    width: 80%;
+    margin: 10%;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    top: 30%;
+    color: white;
+    font-size: 20px;
+    font-family: Spartan;
+}

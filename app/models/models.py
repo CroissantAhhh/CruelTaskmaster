@@ -8,6 +8,15 @@ import string
 def generate_hash_id():
     return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10))
 
+def get_sections_tasks(sections):
+    result = []
+    for section in sections:
+        print(section)
+        num_tasks = len(section.task_order.split('<>'))
+        result.append({ "id": section.id, "title": section.title, "taskCount": num_tasks })
+    result.sort(key=(lambda x: x["id"]))
+    return result
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -86,6 +95,7 @@ class Job(db.Model):
             'banner': self.banner,
             'description': self.description,
             'sectionOrder': self.section_order.split('<>') if self.section_order else [],
+            'tasksStatus': get_sections_tasks(self.sections)
         }
 
     environment = db.relationship("Environment", back_populates="jobs")
