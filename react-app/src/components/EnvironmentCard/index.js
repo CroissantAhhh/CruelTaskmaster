@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import getBanner from '../../utils/getBanner';
 import { updateEnvironment, removeEnvironment } from '../../store/environments';
 import DeleteConfirmationModal from '../DeleteConfirmationModal';
 import "./EnvironmentCard.css";
