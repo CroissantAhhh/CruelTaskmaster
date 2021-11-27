@@ -119,11 +119,32 @@
     margin-left: 30px;
 }
 
+.create-new-job-button {
+    box-sizing: border-box;
+    height: 70px;
+    width: 96%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: 3px dashed #633B1D;
+    border-radius: 20px;
+    color: white;
+    font-family: Spartan;
+    cursor: pointer;
+}
+
 .job-details {
     height: 100%;
     width: 50%;
     background-color: #A56C37;
     border-radius: 0px 20px 20px 0px;
+}
+
+.job-details-top {
+    position: relative;
+    margin-bottom: 2%;
 }
 
 .job-details-header {
@@ -165,4 +186,49 @@
     color: white;
     font-size: 20px;
     font-family: Spartan;
+}
+
+.job-details-bottom {
+    width: 100%;
+    background-color: #A56C37;
+    display: flex;
+}
+
+.tasks-breakdown {
+    height: 200px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 30px;
+    padding-top: 30px;
+    overflow: scroll;
+    color: white;
+    font-family: Spartan;
+}
+
+.tasks-breakdown-header {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.section-breakdown {
+    font-size: 20px;
+    margin: 10px 0px;
+}
+
+.job-board-portal {
+    height: 200px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Spartan;
+    cursor: pointer;
+}
+
+.job-board-portal:hover {
+    background-color: #c08c5b;
 }
