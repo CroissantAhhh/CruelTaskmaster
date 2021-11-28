@@ -17,3 +17,8 @@
     border: 1px solid black;
     overflow: scroll;
 }
+
+[class*="-task-area"] {
+    height: 100%;
+    overflow: scroll;
+}

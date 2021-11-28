@@ -1,9 +1,14 @@
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
 .task-block {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 100px;
+    height: 80px;
     width: 100%;
 }
 
@@ -24,7 +29,11 @@
 
 .task-block-title {
     text-align: center;
-    font-size: 1.3vh;
+    font-size: 15px;
+    font-family: Spartan;
+    color: white;
+    padding: 0px 10px;
+    white-space: initial;
 }
 
 .task-detail-title {

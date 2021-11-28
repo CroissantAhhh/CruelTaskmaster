@@ -28,7 +28,7 @@ export default function JobBoardSection({ section, tasks, index }) {
     });
 
     const taskAreaStyle = {
-        height: '500px'
+        height: '100%'
     }
 
     function showSectionED(e) {

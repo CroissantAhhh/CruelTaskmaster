@@ -26,6 +26,7 @@
     padding: 0px 20px;
     color: white;
     position: absolute;
+    top: 0;
     z-index: 5;
 }
 
@@ -50,6 +51,6 @@
 }
 
 [class*="-task-area"] {
-    padding-top: 85px;
+    padding-top: 90px;
     background-color: #bb936e;
 }
