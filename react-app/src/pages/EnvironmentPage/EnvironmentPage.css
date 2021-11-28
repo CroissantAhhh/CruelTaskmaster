@@ -115,6 +115,10 @@
     cursor: pointer;
 }
 
+.job-log-card:hover {
+    opacity: 0.7;
+}
+
 .job-log-card > p {
     margin-left: 30px;
 }
@@ -133,6 +137,10 @@
     color: white;
     font-family: Spartan;
     cursor: pointer;
+}
+
+.create-new-job-button:hover {
+    background-color: #633B1D;
 }
 
 .job-details {

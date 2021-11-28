@@ -2,13 +2,17 @@
 
 .job-board-container {
     display: flex;
-    overflow: auto;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
     white-space: nowrap;
     border: 1px solid black;
 }
 
 .job-board-section {
-    width: 500px;
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 400px;
     height: 500px;
     border: 1px solid black;
     overflow: scroll;

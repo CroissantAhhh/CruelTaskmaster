@@ -5,6 +5,7 @@ import { useJobPage } from '../../../context/JobPageContext';
 import { useParams } from 'react-router-dom';
 import { addSection } from '../../../store/sections';
 import { updateJob } from '../../../store/jobs';
+import "./AddSectionModal.css";
 
 export default function AddSectionModal() {
     const dispatch = useDispatch();

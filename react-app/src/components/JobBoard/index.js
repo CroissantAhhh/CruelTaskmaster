@@ -149,7 +149,7 @@ export default function JobBoard({ sections }) {
     };
 
     const jobBoardStyle = {
-        width: 500 * jobPageInfo.sectionOrder.length,
+        width: 400 * jobPageInfo.sectionOrder.length,
     }
 
     return (
@@ -166,7 +166,6 @@ export default function JobBoard({ sections }) {
                     </div>
                 )}
             </Droppable>
-            <AddSectionModal />
         </DragDropContext>
     )
 }

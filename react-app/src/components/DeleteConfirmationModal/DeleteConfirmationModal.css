@@ -1,0 +1,72 @@
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
+.delete-button-content {
+    height: 40px;
+    width: 80px;
+    border-radius: 20px;
+    background-color: #85261c;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.delete-button-content:hover {
+    background-color: black;
+    color: #85261c;
+}
+
+.delete-button-content > p {
+    font-family: Spartan;
+}
+
+.confirm-delete-modal {
+    height: 200px;
+    width: 400px;
+    background-color: black;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.delete-question {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Spartan;
+    font-size: 20px;
+    text-align: center;
+}
+
+.delete-yes-no {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-yes-no > button{
+    margin: 0px 30px;
+    height: 40px;
+    width: 150px;
+    cursor: pointer;
+    border-color: white;
+    background-color: black;
+    color: white;
+}
+
+.delete-no:hover {
+    background-color: #85261c;
+}
+
+.delete-yes:hover {
+    background-color: #276701;
+}

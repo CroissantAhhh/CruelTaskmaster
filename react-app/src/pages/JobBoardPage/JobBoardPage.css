@@ -1,3 +1,89 @@
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
 .job-board-page-content {
     overflow: scroll;
+}
+
+.job-board-page-container-container {
+    width: 100%;
+    background-color: #3B2516;
+}
+
+.job-board-page-container {
+    height: 100%;
+    width: 100%;
+}
+
+.job-board-header {
+    height: 150px;
+    width: 100%;
+    display: flex;
+}
+
+.JBH-left {
+    width: 30%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.JBH-left a {
+    height: 100%;
+    font-size: 20px;
+    margin-top: 133px;
+}
+
+.JBH-middle {
+    width: 40%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Spartan;
+}
+
+.JBH-title {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.JBH-desc {
+    font-size: 20px;
+    text-align: center;
+}
+
+.JBH-right {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-board-page-content {
+    height: 500px;
+    width: 90%;
+    margin-left: 5%;
+    background-color: #633B1D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.job-board-container {
+    height: 90%;
+    width: 90%;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.job-board-closing-bar {
+    height: 100px;
+    width: 100%;
+    background-color: #3B2516;
 }
