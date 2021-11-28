@@ -1,0 +1,9 @@
+.add-task-modal {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.add-task-modal:hover {
+    color: #02753F;
+}

@@ -1,0 +1,55 @@
+@font-face {
+    font-family: Bebasneue;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637873845/BebasNeue-Regular_orwsih.ttf)
+}
+
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
+.job-board-section {
+    border-radius: 20px;
+    background-color: white;
+    margin: 20px 10px;
+    position: relative;
+}
+
+.job-board-section-top {
+    height: 80px;
+    width: 90%;
+    display: flex;
+    background-color: #1A3D54;
+    background-clip: border-box;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    color: white;
+    position: absolute;
+    z-index: 5;
+}
+
+.job-board-section-top > p {
+    font-family: Spartan;
+    font-size: 25px;
+}
+
+.JBS-controls {
+    display: flex;
+}
+
+.show-section-ED {
+    height: 40px;
+    width: 40px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.show-section-ED:hover {
+    color: #D1A200;
+}
+
+[class*="-task-area"] {
+    padding-top: 85px;
+    background-color: #bb936e;
+}
