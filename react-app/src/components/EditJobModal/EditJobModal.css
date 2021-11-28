@@ -3,22 +3,21 @@
     src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
 }
 
-.add-section-button {
+.edit-job-button-content {
     height: 40px;
-    width: 100px;
+    width: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 10px;
-    background-color: rgb(1, 117, 63);
+    padding: 10px;
+    background-color: rgb(209, 161, 2);
     border-radius: 20px;
     font-family: Spartan;
-    text-align: center;
     color: white;
     cursor: pointer;
 }
 
-.add-section-button:hover {
+.edit-job-button-content:hover {
     background-color: white;
-    color: rgb(1, 117, 63);
+    color: rgb(209, 161, 2);
 }
