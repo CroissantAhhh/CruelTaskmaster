@@ -12,7 +12,7 @@ def get_sections_tasks(sections):
     result = []
     for section in sections:
         print(section)
-        num_tasks = len(section.task_order.split('<>'))
+        num_tasks = len(section.task_order.split('<>')) if section.task_order != "" else 0
         result.append({ "id": section.id, "title": section.title, "taskCount": num_tasks })
     result.sort(key=(lambda x: x["id"]))
     return result

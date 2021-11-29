@@ -44,7 +44,9 @@ export default function EnvironmentPage() {
                         </div>
                     </div>
                     <div className="jobs-log-container">
-                        <p className="jobs-log-header">Job Log</p>
+                        <div className="job-log-header-container">
+                            <p className="jobs-log-header">Job Log</p>
+                        </div>
                         <div className="jobs-log">
                             <div className="job-log-cards-section">
                                 <p className="job-log-cards-header">Jobs</p>
@@ -56,9 +58,7 @@ export default function EnvironmentPage() {
                                 <CreateJobModal envId={currentEnvironment?.id} />
                             </div>
                             <div className="job-details">
-                                <div className="job-details-header-container">
-                                    <p className="job-details-header">Job Details</p>
-                                </div>
+                                <p className="job-details-header">Job Details</p>
                                 {selectedJob && (
                                     <div className="job-details-info">
                                         <div className="job-details-top">
