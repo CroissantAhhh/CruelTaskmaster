@@ -47,3 +47,71 @@ a {
     color: white;
     cursor: pointer;
 }
+
+.EDE-top {
+    display: flex;
+    color: white;
+    font-family: Spartan;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+
+.close-env-ED {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.edit-env-title-section {
+    align-self: flex-end;
+}
+
+.edit-env-title {
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.edit-env-title-form {
+    height: 30px;
+}
+
+.edit-env-title-form > input {
+    height: 24px;
+    width: 97%;
+    background-color: #3B2516;
+    border-color: black;
+    color: white;
+    font-family: Spartan;
+    font-size: 15px;
+}
+
+.close-env-ED:hover {
+    color: #85261C;
+}
+
+.edit-env-title-form {
+    display: flex;
+}
+
+.EETF-submit {
+    height: 100%;
+    width: 70px;
+    background-color: #3B2516;
+    border-color: black;
+    color: white;
+    font-family: Spartan;
+    font-size: 15px;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.EETF-submit:hover {
+    color: rgb(1, 100, 1);
+}
+
+.delete-env-section {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}

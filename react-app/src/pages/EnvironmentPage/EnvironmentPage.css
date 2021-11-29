@@ -34,11 +34,11 @@
 }
 
 .env-welcome-text {
+    width: 100%;
     color: white;
     position: absolute;
     z-index: 2;
     top: 150px;
-    margin: 0 20%;
     text-align: center;
 }
 

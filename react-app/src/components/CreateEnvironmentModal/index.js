@@ -11,6 +11,7 @@ export default function CreateEnvironmentModal() {
     const [showModal, setShowModal] = useState(false);
     const [envTitle, setEnvTitle] = useState("");
     const [envDesc, setEnvDesc] = useState("");
+    const [showError, setShowError] = useState(false);
 
     const sessionUser = useSelector(state => state.session.user);
 
@@ -22,8 +23,12 @@ export default function CreateEnvironmentModal() {
             description: envDesc,
         }
 
+        if (!envTitle) {
+            return setShowError(true);
+        }
+
         const newEnv = await dispatch(addEnvironment(newEnvForm));
-        history.push(`/environments/${newEnv.hashedId}`);
+        history.push(`/environments/${newEnv?.hashedId}`);
     }
 
     return (
@@ -40,8 +45,11 @@ export default function CreateEnvironmentModal() {
                 <Modal onClose={() => setShowModal(false)}>
                     <div className="create-new-environment-form-container">
                         <p className="create-new-environment-form-header">Create New Environment</p>
+                        {showError && (
+                            <p className="new-env-error">Title Required.</p>
+                        )}
                         <form className="create-new-environment-form" onSubmit={createEnvironment}>
-                            <label htmlFor="new-environment-title">{"Title: "}</label>
+                            <label htmlFor="new-environment-title">{"Title: (Required) "}</label>
                             <input id="new-environment-title" type="text" value={envTitle} onChange={e => setEnvTitle(e.target.value)}></input>
                             <label htmlFor="new-environment-desc">{"Description: (Optional)"}</label>
                             <input id="new-environment-desc" type="textarea" value={envDesc} onChange={e => setEnvDesc(e.target.value)}></input>

@@ -37,3 +37,55 @@
     cursor: pointer;
     margin-bottom: 20px;
 }
+
+.create-new-environment-form-container {
+    height: 400px;
+    width: 400px;
+    padding: 20px;
+    background-color: #633B1D;
+    border-radius: 20px;
+    border: 10px solid black;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: Spartan;
+    gap: 20px;
+}
+
+.create-new-environment-form-header {
+    margin-top: 20px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.new-env-error {
+    color: red;
+}
+
+.create-new-environment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.create-new-environment-form > input {
+    background-color: #3B2516;
+    border-color: black;
+    color: white;
+    font-family: Spartan;
+    font-size: 20px;
+}
+
+.create-new-environment-form > button {
+    height: 50px;
+    background-color: #1A3D54;
+    border: none;
+    color: white;
+    font-family: Bebasneue;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.create-new-environment-form > button:hover {
+    color: rgb(2, 109, 2);
+}
