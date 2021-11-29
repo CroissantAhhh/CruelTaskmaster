@@ -15,6 +15,7 @@ export default function EditJobModal({ job }) {
 
     async function editJob(e) {
         e.preventDefault();
+        setShowError(false);
         const updatedJobForm = {
             id: job.id,
             title: jobTitle,

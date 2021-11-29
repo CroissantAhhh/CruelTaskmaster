@@ -18,7 +18,7 @@ export default function CreateJobModal({ envId }) {
 
     async function createJob(e) {
         e.preventDefault();
-
+        setShowError(false);
         const newJobForm = {
             environmentHash,
             title: jobTitle,
