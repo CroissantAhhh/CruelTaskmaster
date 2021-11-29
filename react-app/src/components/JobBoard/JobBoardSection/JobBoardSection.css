@@ -68,7 +68,7 @@
 }
 
 .EDS-content {
-    height: 150px;
+    height: 200px;
     width: 200px;
     background-color: #633B1D;
     border: 10px solid black;
@@ -76,5 +76,46 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
+}
+
+.close-section-ED {
+    background: none;
+    border: none;
+    color: white;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.close-section-ED:hover {
+    color: rgb(133, 25, 25);
+}
+
+.edit-section-title-area {
+    font-family: Spartan;
+    height: 80px;
+}
+
+.edit-section-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.edit-section-title-form {
+    width: 100%;
+}
+
+.edit-section-title-form > input {
+    height: 30px;
+    width: 90%;
+    background-color: #3B2516;
+    border-color: black;
+    color: white;
+    font-family: Spartan;
+    font-size: 20px;
+}
+
+.delete-button-content {
+    align-self: flex-end;
 }
