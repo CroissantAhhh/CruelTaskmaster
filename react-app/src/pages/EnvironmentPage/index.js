@@ -45,14 +45,16 @@ export default function EnvironmentPage() {
                     </div>
                     <div className="jobs-log-container">
                         <div className="job-log-header-container">
-                            <Link to={'/home'}>
-                                <div className="link-content">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" width="40px" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clipRule="evenodd" />
-                                    </svg>
-                                    <p>&nbsp;&nbsp;{`Back to Environments`}</p>
-                                </div>
-                            </Link>
+                            <div className="back-to-home">
+                                <Link to={'/home'}>
+                                    <div className="link-content">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" width="40px" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clipRule="evenodd" />
+                                        </svg>
+                                        <p>&nbsp;&nbsp;{`Back to Environments`}</p>
+                                    </div>
+                                </Link>
+                            </div>
                             <p className="jobs-log-header">Job Log</p>
                             <div className="JLH-placeholder"></div>
                         </div>

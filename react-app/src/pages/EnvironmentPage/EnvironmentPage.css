@@ -63,6 +63,21 @@
 
 }
 
+.back-to-home {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.jobs-log-header {
+    width: 40%;
+}
+
+.JLH-placeholder {
+    width: 30%;
+}
+
 .jobs-log-container {
     height: 800px;
     width: 100%;
