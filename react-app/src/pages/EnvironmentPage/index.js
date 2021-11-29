@@ -54,6 +54,7 @@ export default function EnvironmentPage() {
                                 </div>
                             </Link>
                             <p className="jobs-log-header">Job Log</p>
+                            <div className="JLH-placeholder"></div>
                         </div>
                         <div className="jobs-log">
                             <div className="job-log-cards-section">
