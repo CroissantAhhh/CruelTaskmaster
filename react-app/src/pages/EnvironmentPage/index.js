@@ -56,7 +56,9 @@ export default function EnvironmentPage() {
                                 <CreateJobModal envId={currentEnvironment?.id} />
                             </div>
                             <div className="job-details">
-                                <p className="job-details-header">Job Details</p>
+                                <div className="job-details-header-container">
+                                    <p className="job-details-header">Job Details</p>
+                                </div>
                                 {selectedJob && (
                                     <div className="job-details-info">
                                         <div className="job-details-top">

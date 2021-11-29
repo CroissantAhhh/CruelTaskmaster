@@ -198,8 +198,9 @@
 
 .job-details-bottom {
     width: 100%;
-    background-color: #A56C37;
+    background-color: #633B1D;
     display: flex;
+    border-bottom-right-radius: 20px;
 }
 
 .tasks-breakdown {
