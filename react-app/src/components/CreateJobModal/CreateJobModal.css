@@ -3,32 +3,43 @@
     src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
 }
 
-.add-section-button {
-    height: 40px;
-    width: 100px;
+.create-new-job-container {
+    height: 300px;
+    width: 30%;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+    background-color: #A56C37;
+    border-radius: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px 10px;
-    background-color: rgb(1, 117, 63);
-    border-radius: 20px;
-    font-family: Spartan;
-    text-align: center;
-    color: white;
     cursor: pointer;
 }
 
-.add-section-button:hover {
-    background-color: white;
-    color: rgb(1, 117, 63);
+.create-new-job-section:hover {
+    background-color: #b37e4e;
 }
 
-.add-section-title {
+.create-new-job-button {
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.create-new-job-title {
+    width: 100%;
+    color: white;
     font-size: 35px;
+    font-family: Spartan;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
 
-.add-section-form-container {
-    height: 300px;
+.create-job-form-container {
+    height: 400px;
     width: 400px;
     padding: 20px;
     background-color: #633B1D;
@@ -41,23 +52,23 @@
     gap: 20px;
 }
 
-.add-section-form-header {
+.create-job-form-header {
     margin-top: 20px;
     font-size: 40px;
     text-align: center;
 }
 
-.section-form-error {
+.new-job-error {
     color: red;
 }
 
-.add-section-form {
+.create-job-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.add-section-form > input {
+.create-job-form > input {
     background-color: #3B2516;
     border-color: black;
     color: white;
@@ -65,7 +76,7 @@
     font-size: 20px;
 }
 
-.add-section-form > button {
+.create-job-form > button {
     height: 50px;
     background-color: #1A3D54;
     border: none;
@@ -75,6 +86,6 @@
     cursor: pointer;
 }
 
-.add-section-form > button:hover {
+.create-job-form > button:hover {
     color: rgb(2, 109, 2);
 }

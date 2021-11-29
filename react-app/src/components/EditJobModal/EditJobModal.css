@@ -21,3 +21,83 @@
     background-color: white;
     color: rgb(209, 161, 2);
 }
+
+.edit-new-job-button {
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-new-job-title {
+    width: 100%;
+    color: white;
+    font-size: 35px;
+    font-family: Spartan;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.edit-job-form-container {
+    height: 500px;
+    width: 400px;
+    padding: 20px;
+    background-color: #633B1D;
+    border-radius: 20px;
+    border: 10px solid black;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: Spartan;
+    gap: 20px;
+}
+
+.edit-job-form-header {
+    margin-top: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.edit-job-error {
+    color: red;
+}
+
+.edit-job-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit-job-form > input {
+    height: 30px;
+    background-color: #3B2516;
+    border-color: black;
+    color: white;
+    font-family: Spartan;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.edit-job-form > textarea {
+    background-color: #3B2516;
+    border-color: black;
+    color: white;
+    font-family: Spartan;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.edit-job-form > button {
+    height: 50px;
+    background-color: #1A3D54;
+    border: none;
+    color: white;
+    font-family: Bebasneue;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.edit-job-form > button:hover {
+    color: rgb(2, 109, 2);
+}

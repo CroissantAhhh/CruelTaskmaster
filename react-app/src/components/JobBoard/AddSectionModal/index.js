@@ -12,6 +12,7 @@ export default function AddSectionModal() {
     const { addSectionToBoard } = useJobPage();
     const [showModal, setShowModal] = useState(false);
     const [sectionTitle, setSectionTitle] = useState("");
+    const [showError, setShowError] = useState(false);
     const { jobHash } = useParams();
     const userJobs = useSelector(state => Object.values(state.jobs));
     const currentJob = userJobs?.find(job => job.hashedId === jobHash);
@@ -24,6 +25,8 @@ export default function AddSectionModal() {
             title: sectionTitle,
             taskOrder: "",
         }
+
+        if (!sectionTitle) return setShowError(true);
 
         const newSection = await dispatch(addSection(newSectionForm));
         // const response = await fetch(`/api/jobs/${jobHash}`);
@@ -39,24 +42,28 @@ export default function AddSectionModal() {
 
         setSectionTitle("");
         setShowModal(false);
+        setShowError(false);
     }
 
     return (
         <>
-            <div className="add-section-button" onClick={() => setShowModal(true)}>
+            <div className="add-section-button" onClick={() => { setShowModal(true); setShowError(false); }}>
                 <p>Add Section&nbsp;</p>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
                 </svg>
             </div>
             {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
+                <Modal onClose={() => { setShowModal(false); setShowError(false)}}>
                     <div className="add-section-form-container">
                         <form className="add-section-form" onSubmit={postSection}>
                             <p className="add-section-title">Create New Section</p>
-                            <label htmlFor="section-title">Title</label>
+                            {showError && (
+                                <p className="section-form-error">Title Required</p>
+                            )}
+                            <label htmlFor="section-title">Title: (Required)</label>
                             <input id="section-title" type="text" value={sectionTitle} onChange={e => setSectionTitle(e.target.value)}></input>
-                            <button className="section-form-submit" type="submit" disabled={!sectionTitle}>Create</button>
+                            <button className="section-form-submit" type="submit">Create</button>
                         </form>
                     </div>
                 </Modal>

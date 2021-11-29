@@ -54,3 +54,27 @@
     padding-top: 90px;
     background-color: #bb936e;
 }
+
+.triangle-pointer {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid black;
+    position: absolute;
+    top: -20px;
+    left: 50px;
+    z-index: 12;
+}
+
+.EDS-content {
+    height: 150px;
+    width: 200px;
+    background-color: #633B1D;
+    border: 10px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

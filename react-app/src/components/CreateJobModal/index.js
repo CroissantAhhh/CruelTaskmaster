@@ -5,6 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { addJob } from "../../store/jobs";
 import { addJobToEnv } from '../../store/environments';
 import { Modal } from '../../context/Modal'
+import "./CreateJobModal.css";
 
 export default function CreateJobModal({ envId }) {
     const dispatch = useDispatch();
@@ -13,6 +14,7 @@ export default function CreateJobModal({ envId }) {
     const [showModal, setShowModal] = useState(false);
     const [jobTitle, setJobTitle] = useState("");
     const [jobDescription, setJobDescription] = useState("");
+    const [showError, setShowError] = useState(false);
 
     async function createJob(e) {
         e.preventDefault();
@@ -22,6 +24,8 @@ export default function CreateJobModal({ envId }) {
             title: jobTitle,
             description: jobDescription,
         }
+
+        if (!jobTitle) return setShowError(true);
 
         const newJob = await dispatch(addJob(newJobForm));
         await dispatch(addJobToEnv(envId, newJob));
@@ -41,6 +45,9 @@ export default function CreateJobModal({ envId }) {
                     <div className="create-job-form-container">
                         <form className="create-job-form" onSubmit={createJob}>
                             <p className="create-job-form-header">Create New Job</p>
+                            {showError && (
+                                <p className="new-job-error">Title Required</p>
+                            )}
                             <label htmlFor="create-job-form-title">{"Title: "}</label>
                             <input id="create-job-form-title" type="text" value={jobTitle} onChange={e => setJobTitle(e.target.value)}></input>
                             <label htmlFor="create-job-form-description">{"Description: (Optional)"}</label>

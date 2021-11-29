@@ -19,7 +19,7 @@ export default function TaskBlock({ task, index }) {
     const [taskDetailStyle, setTaskDetailStyle] = useState({
         display: "none",
         position: "fixed",
-        zIndex: "1",
+        zIndex: "20",
         padding: "30px",
         borderRadius: "30px",
         border: "1px solid black",
@@ -106,6 +106,7 @@ export default function TaskBlock({ task, index }) {
             const taskRect = e.currentTarget.getBoundingClientRect();
             setTaskDetailStyle({
                 ...taskDetailStyle,
+                zIndex: 6,
                 left: `${taskRect.left}px`,
                 top: `${taskRect.top}px`,
                 display: "inline-block"
