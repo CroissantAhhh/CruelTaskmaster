@@ -85,7 +85,7 @@ export default function JobBoardSection({ section, tasks, index }) {
         return;
     }
 
-    async function deleteSection(e, section) {
+    async function deleteSection(e) {
         await dispatch(removeSection(section.id.split("-")[2]));
         const updatedSectionOrder = [...jobPageInfo.sectionOrder]
         updatedSectionOrder.splice(updatedSectionOrder.indexOf(section.id), 1);
@@ -122,7 +122,7 @@ export default function JobBoardSection({ section, tasks, index }) {
                         <input type="text" value={sectionTitle} onChange={e => setSectionTitle(e.target.value)}></input>
                     </form>
                 </div>
-                <DeleteConfirmationModal deleteRequest={deleteSection} resource={section} resourceName={section.title} />
+                {/* <DeleteConfirmationModal deleteRequest={deleteSection} resource={section} resourceName={section.title} /> */}
             </div>
         </div>
     )
@@ -150,7 +150,9 @@ export default function JobBoardSection({ section, tasks, index }) {
                             <div className={section.id + '-task-area'} style={taskAreaStyle} {...provided.droppableProps} ref={provided.innerRef}>
                                 {tasks
                                     ? tasks.map((task, index) => {
-                                        return <TaskBlock key={task.id} task={task} index={index} />
+                                        if (task) {
+                                            return <TaskBlock key={task.id} task={task} index={index} />
+                                        }
                                     })
                                     : <p>no tasks yet</p>
                                 }

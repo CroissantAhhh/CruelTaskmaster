@@ -184,7 +184,7 @@ export default function TaskBlock({ task, index }) {
                             </form>
                         )}
                 </div>
-                <DeleteConfirmationModal deleteRequest={deleteTask} resource={task} resourceName={task.title} />
+                {/* <DeleteConfirmationModal deleteRequest={deleteTask} resource={task} resourceName={task.title} /> */}
             </div>
         </div>
     )
