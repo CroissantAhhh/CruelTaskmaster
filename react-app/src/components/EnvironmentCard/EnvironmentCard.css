@@ -27,6 +27,7 @@
 }
 
 a {
+    width: 70%;
     color: white;
     text-decoration: none;
     font-family: Spartan;
@@ -39,6 +40,7 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 0px 20px;
+    overflow: hidden;
 }
 
 .show-env-ED {
@@ -69,6 +71,7 @@ a {
 .edit-env-title {
     margin-bottom: 20px;
     font-size: 30px;
+    text-overflow: ellipsis;
 }
 
 .edit-env-title-form {

@@ -36,11 +36,120 @@
     white-space: initial;
 }
 
-.task-detail-title {
+.TDPU-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.TDPU-title {
+    font-size: 30px;
+}
+
+.task-detail-title {
+    height: 50px;
+}
+
+.task-detail-title-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.task-detail-title-display {
+    height: 80px;
+    white-space: pre-wrap;
+}
+
+.task-detail-title-edit > input {
+    width: 90%;
+    height: 30px;
+    background-color: #633B1D;
+    border: 1px solid black;
+    color: white;
+    font-family: Spartan;
+}
+
+.TDT-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.TDD-top {
+    display: flex;
+    justify-content: space-between;
 }
 
 .task-detail-details {
+    width: 100%;
+}
+
+.task-detail-details-display {
+    height: 80px;
+    width: 100%;
+    white-space: pre-wrap;
+}
+
+.task-detail-details-display > p {
     overflow-wrap: break-word;
+}
+
+.task-detail-details-edit > textarea {
+    height: 80px;
+    color: white;
+    font-family: Spartan;
+}
+
+.task-detail-pop-up-content {
+    height: 100%;
+    width: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: Spartan;
+    color: white;
+}
+
+.task-detail-close {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    align-self: flex-end;
+    color: white;
+}
+
+.task-detail-status {
+    font-size: 25px;
+}
+
+.task-detail-details-title {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.task-detail-title-edit-toggle, .task-detail-details-edit-toggle {
+    cursor: pointer;
+}
+
+.task-detail-title-edit-toggle:hover, .task-detail-details-edit-toggle:hover {
+    color: rgb(216, 176, 0);
+}
+
+.TDDE-button {
+    background: none;
+    border: none;
+    color: white;
+    font-family: Spartan;
+    cursor: pointer;
+}
+
+.TDDE-button:hover {
+    color: rgb(2, 119, 2);
+}
+
+.task-detail-pop-up-content > .delete-button-content {
+    align-self: flex-end;
+}
+
+.task-detail-title-edit-error {
+    color: red;
 }

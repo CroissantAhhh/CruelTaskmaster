@@ -12,7 +12,7 @@ export default function SplashPage() {
                 <img src="https://res.cloudinary.com/dmtj0amo0/image/upload/v1637700432/cruelTaskmasterLogoWhite_h6nw0r.png" alt="white logo" height="60px"></img>
                 <div className="login-signup">
                     <div className="signup-section auth">
-                        <p className="signup-title">Join the Hoard!</p>
+                        <p className="signup-title">Join the Horde!</p>
                         <Link to="/signup">Signup</Link>
                     </div>
                     <div className="login-section auth">

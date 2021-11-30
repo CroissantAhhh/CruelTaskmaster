@@ -69,7 +69,7 @@ export default function AddTaskModal({ section }) {
                             <label htmlFor="task-title">Title</label>
                             <input id="task-title" type="text" value={taskTitle} onChange={e => setTaskTitle(e.target.value)}></input>
                             <label htmlFor="task-details">Details</label>
-                            <input id="task-details" type="textarea" value={taskDetails} onChange={e => setTaskDetails(e.target.value)}></input>
+                            <textarea id="task-details" rows="4" value={taskDetails} onChange={e => setTaskDetails(e.target.value)}></textarea>
                             <button className="task-form-submit" type="submit" disabled={!taskTitle}>Create</button>
                         </form>
                     </div>

@@ -116,6 +116,6 @@
     font-size: 20px;
 }
 
-.delete-button-content {
+.EDS-content > .delete-button-content {
     align-self: flex-end;
 }

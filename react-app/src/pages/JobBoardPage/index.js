@@ -31,9 +31,9 @@ export default function JobBoardPage() {
         })();
     }, [jobHash, dispatch])
 
-    function deleteJob(e, job) {
-        dispatch(removeJob(job.id));
-        dispatch(removeJobFromEnv(parentEnv?.id, jobHash));
+    async function deleteJob(e, job) {
+        await dispatch(removeJob(job.id));
+        await dispatch(removeJobFromEnv(parentEnv?.id, jobHash));
         history.push(`/environments/${parentEnv?.hashedId}`);
     }
 

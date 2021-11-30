@@ -56,6 +56,7 @@ export const updateTask = (formData) => async dispatch => {
     if (response.ok) {
         const task = await response.json();
         dispatch(add(task));
+        return task;
     }
 }
 

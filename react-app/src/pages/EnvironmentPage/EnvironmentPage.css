@@ -100,7 +100,7 @@
     height: 100%;
     width: 50%;
     background-color: #A56C37;
-    overflow: scroll;
+    overflow-y: scroll;
     border-radius: 20px 0px 0px 20px;
 }
 
@@ -218,6 +218,13 @@
     border-bottom-right-radius: 20px;
 }
 
+.link-content {
+    color: white;
+    text-decoration: none;
+    font-family: Spartan;
+    font-size: 30px;
+}
+
 .tasks-breakdown {
     height: 200px;
     width: 50%;
@@ -227,7 +234,7 @@
     align-items: flex-start;
     padding-left: 30px;
     padding-top: 30px;
-    overflow: scroll;
+    overflow-y: scroll;
     color: white;
     font-family: Spartan;
 }

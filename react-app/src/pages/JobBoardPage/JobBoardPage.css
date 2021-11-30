@@ -3,10 +3,6 @@
     src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
 }
 
-.job-board-page-content {
-    overflow: scroll;
-}
-
 .job-board-page-container-container {
     width: 100%;
     background-color: #3B2516;
@@ -41,10 +37,13 @@
 
 .link-content {
     font-size: 20px;
+    font-family: Spartan;
     display: flex;
+    text-decoration: none;
     justify-content: center;
     align-items: center;
 }
+
 
 .JBH-middle {
     width: 40%;

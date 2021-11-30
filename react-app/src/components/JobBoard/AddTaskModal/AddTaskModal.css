@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Spartan;
+    src: url(https://res.cloudinary.com/dmtj0amo0/raw/upload/v1637957146/Spartan-Regular_xdwldv.ttf)
+}
+
 .add-task-modal {
     height: 40px;
     width: 40px;
@@ -6,4 +11,53 @@
 
 .add-task-modal:hover {
     color: #02753F;
+}
+
+.add-task-form {
+    height: 350px;
+    width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 10px solid black;
+    background-color: #633B1D;
+    border-radius: 20px;
+    color: white;
+    font-family: Spartan;
+    gap: 5px;
+}
+
+.add-task-title {
+    font-size: 30px;
+    margin: 20px 0px;
+    text-align: center;
+}
+
+.add-task-form > label {
+    font-size: 20px;
+}
+
+.add-task-form > input, textarea {
+    background-color: #3B2516;
+    border-color: black;
+    font-size: 20px;
+}
+
+#task-title {
+    margin-bottom: 10px;
+}
+
+.add-task-form > button {
+    height: 40px;
+    background-color: #1A3D54;
+    border: none;
+    color: white;
+    font-family: Bebasneue;
+    font-size: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.add-task-form > button:hover {
+    color: rgb(2, 109, 2);
 }
