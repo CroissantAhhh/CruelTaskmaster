@@ -41,7 +41,7 @@ export default function NavBar() {
       </div>
       {loggedIn ? (
         <div className="nav-bar-logged-in">
-          <div className="site-nav-bar-utils">
+          <div className="site-nav-bar-utils" style={{ visibility: "hidden"}}>
             <div className="dropdown-board-links">
               <div className="nav-hover-container">
                 <p>Recent</p>
