@@ -26,7 +26,7 @@ export default function JobBoard({ sections }) {
                 const { job, sections, tasks } =  jobFullInfo;
                 populateJobBoard(job, sections, tasks)
             }
-        })()
+        })();
     }, [jobHash])
 
     function swapWithinSection(newTaskIds, sectionElementId) {
@@ -38,7 +38,7 @@ export default function JobBoard({ sections }) {
         dispatch(updateSection(newTaskOrder));
     }
 
-    async function swapBetweenSection(startNewOrder, finishNewOrder, startId, finishId) {
+    async function swapBetweenSection(startNewOrder, finishNewOrder, startId, finishId, swappedTaskId) {
         const section1Id = finishId.split("-")[2];
         const newTask1Order = {
             id: section1Id,
@@ -131,7 +131,8 @@ export default function JobBoard({ sections }) {
             ...jobPageInfo.tasks,
             [task1Id]: {
                 ...jobPageInfo.tasks[task1Id],
-                status: newFinish.title
+                status: newFinish.title,
+                sectionId: start.id,
             }
         }
 
@@ -151,6 +152,8 @@ export default function JobBoard({ sections }) {
     const jobBoardStyle = {
         width: 400 * jobPageInfo.sectionOrder.length,
     }
+
+    console.log(jobPageInfo)
 
     return (
         <DragDropContext onDragEnd={handleOnDragEnd}>

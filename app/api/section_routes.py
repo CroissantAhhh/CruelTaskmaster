@@ -31,7 +31,7 @@ def post_section():
     db.session.add(section)
     parent_job = Job.query.get(section.job_id)
     job_section_order = parent_job.section_order.split('<>')
-    if len(job_section_order) == 0:
+    if parent_job.section_order == '':
         parent_job.section_order = str(section.id)
     else:
         job_section_order.append(str(section.id))

@@ -75,11 +75,13 @@ export default function TaskBlock({ task, index }) {
         return;
     }
 
-    async function deleteTask(e, task) {
+    async function deleteTask(e) {
         await dispatch(removeTask(task.id.split("-")[2]));
+        console.log(task);
         const updatedTasks = {...jobPageInfo.tasks};
         delete updatedTasks[task.id];
         const updatedSections = {...jobPageInfo.sections}
+        console.log(jobPageInfo)
         updatedSections[task.sectionId].taskIds.splice(updatedSections[task.sectionId].taskIds.indexOf(task.id), 1)
         setJobPageInfo({
             ...jobPageInfo,
@@ -87,6 +89,7 @@ export default function TaskBlock({ task, index }) {
             tasks: updatedTasks,
         });
         closeDetail(e);
+        return;
     }
 
     function closeDetail(e) {
@@ -187,17 +190,21 @@ export default function TaskBlock({ task, index }) {
     )
 
     return (
-        <Draggable draggableId={task.id} index={index}>
-            {provided => (
-                <div id={task.id} className="task-block" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                    <div className="task-block-content" onClick={e => showTaskDetail(e)}>
-                        <div className="task-block-body">
-                            <p className="task-block-title">{task.title}</p>
+        <>
+            {task && (
+                <Draggable draggableId={task.id} index={index}>
+                    {provided => (
+                        <div id={task.id} className="task-block" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                            <div className="task-block-content" onClick={e => showTaskDetail(e)}>
+                                <div className="task-block-body">
+                                    <p className="task-block-title">{task.title}</p>
+                                </div>
+                            </div>
+                            {taskDetail}
                         </div>
-                    </div>
-                    {taskDetail}
-                </div>
+                    )}
+                </Draggable>
             )}
-        </Draggable>
+        </>
     )
 }

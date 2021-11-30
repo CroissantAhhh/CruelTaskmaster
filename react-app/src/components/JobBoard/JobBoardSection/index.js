@@ -1,6 +1,6 @@
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import TaskBlock from '../TaskBlock'
@@ -22,6 +22,12 @@ export default function JobBoardSection({ section, tasks, index }) {
         position: "fixed",
         zIndex: "10",
     });
+
+    useEffect(() => {
+        return () => {
+            tasks = tasks.filter(task => (task));
+        }
+    }, [tasks]);
 
     const taskAreaStyle = {
         height: '100%'
@@ -120,6 +126,8 @@ export default function JobBoardSection({ section, tasks, index }) {
             </div>
         </div>
     )
+
+    console.log(tasks)
 
     return (
         <Draggable draggableId={section.id} index={index}>

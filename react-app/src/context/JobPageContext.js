@@ -34,7 +34,7 @@ export default function JobPageProvider({ children }) {
         (task) => {
             const newTaskKey = 'task-block-' + task.id;
             const parentSectionId = 'section-block-' + task.sectionId;
-            const newTask = { id: newTaskKey, title: task.title, status: task.status, details: task.details};
+            const newTask = { id: newTaskKey, title: task.title, status: task.status, details: task.details, sectionId: parentSectionId };
             const updatedSections = {...jobPageInfo.sections}
             updatedSections[parentSectionId].taskIds.push(newTaskKey);
             setJobPageInfo({...jobPageInfo, sections: updatedSections, tasks: {...jobPageInfo.tasks, [newTaskKey]: newTask}})

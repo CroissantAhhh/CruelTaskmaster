@@ -25,7 +25,7 @@ def post_task():
     db.session.add(task)
     parent_section = Section.query.get(task.section_id)
     section_task_order = parent_section.task_order.split('<>')
-    if len(section_task_order) == 0:
+    if parent_section.task_order == '':
         parent_section.task_order = str(task.id)
     else:
         section_task_order.append(str(task.id))
